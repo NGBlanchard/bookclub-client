@@ -1,0 +1,43 @@
+.book-container {
+  background-color: white;
+  border: 0.5px solid rgb(235, 235, 235);
+  border-radius: 5px;
+  margin: 10px;
+  box-shadow: 0px 9px 10px -8px rgba(0, 0, 0, 0.5);
+  padding: 15px;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.head-info {
+  margin-top: 40px;
+  margin-right: 10px;
+}
+.comments-container {
+  margin-top: 50px;
+}
+
+.comment-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.bookpage-cover {
+  margin: 10px;
+  width: 125px;
+  float: right;
+  box-shadow: 0px 12px 20px -8px rgba(0, 0, 0, 0.5);
+}
+
+.discussion {
+  margin-left:5px;
+  margin-bottom: 10px;
+}
