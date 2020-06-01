@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Nav from "../Nav/Nav";
-// import CommentCard from "../Comments/CommentCard";
+import CommentCard from "../Comments/CommentCard";
 import CommentForm from "../Comments/CommentForm";
 import BookClubContext from "../../BookClubContext";
 
@@ -8,6 +8,7 @@ import "./BookPage.css";
 
 export default class BookPage extends Component {
   state = {
+    add: false,
     book: [],
     comments: [],
   };
@@ -16,73 +17,72 @@ export default class BookPage extends Component {
   };
   static contextType = BookClubContext;
 
-  componentDidMount() {
-    this.setBook();
-  }
-
-  setBook = () => {
-    const { books } = this.context;
-    const { bookId } = this.props.match.params;
-    const findBook = books.find(
-      (book) => parseInt(book.id) === parseInt(bookId)
-    );
+  onAdd = () => {
     this.setState({
-      book: findBook,
+      add: !this.state.add,
     });
-    this.setComments(parseInt(bookId))
   };
 
-  setComments = (id) => {
-    const { comments } = this.context
-    const filterComments = comments.filter(
-      (comment) => parseInt(comment.target) === id)
-    this.setState({
-      comments: filterComments,
-    });
-    
-  };
+  onSubmit = () => {};
 
+  findBook = (books = [], bookId) => books.find((book) => book.id === bookId);
+  getCommentsForBook = (comments = [], bookId) =>
+    !bookId
+      ? comments
+      : comments.filter((comment) => comment.attached_to === bookId);
 
   render() {
-    const { comments } = this.state
-    if (!this.state.book) {
-      return (
-      <div>Loading!!</div>
-    )}
+    const { books = [], comments = [] } = this.context;
+    const { bookId } = this.props.match.params;
+    const book = this.findBook(books, bookId) || { content: "" };
+    const bookComments = this.getCommentsForBook(comments, bookId);
+
+    if (!book) {
+      return <div>Loading!!</div>;
+    }
+
     return (
       <>
         <Nav />
         <div className="book-container">
           <header className="header">
             <section className="head-info">
-              <h1 className="book-title">{this.state.book.title}</h1>
-              <h2 className="author">by {this.state.book.author}</h2>
-              <h3 className="pubdate">{this.state.book.pubdate}</h3>
-              <p className="est-time">
-                Estimated Duration: {this.state.book.est_time}
-              </p>
+              <h1 className="book-title">{book.title}</h1>
+              <h2 className="author">by {book.author}</h2>
+              <h3 className="pubdate">{book.pubdate}</h3>
+              <p className="est-time">Estimated Duration: {book.est_time}</p>
             </section>
             <section className="head-img">
               <img
                 className="bookpage-cover"
-                src={this.state.book.cover}
+                src={book.cover}
                 alt="cover art"
               />
             </section>
           </header>
-          {/* <section className="comments-container">
-            <h2 className="discussion">Discussion</h2>
-            <ul className="comment-list">
-              {comments.map((comment) => (
-                <CommentCard
-                  key={comment.id}
-                  comment={comment}
-                  author={comment.author}
-                />
-              ))}
-            </ul>
-          </section> */}
-          <CommentForm render={this.state.comments} />
+          {this.state.add ? (
+            <CommentForm render={bookComments} onSubmit={this.onSubmit} />
+          ) : (
+            <button className="add-button" type="button" onClick={this.onAdd}>
+              Add Comment
+            </button>
+          )}
+          {bookComments.length === 0 ? (
+            <div>No COMMENTS</div>
+          ) : (
+            <section className="comments-container">
+              <h2 className="discussion">Discussion</h2>
+              <ul className="comment-list">
+                {bookComments.map((comment) => (
+                  <CommentCard
+                    key={comment.id}
+                    comment={comment}
+                    author={comment.author}
+                  />
+                ))}
+              </ul>
+            </section>
+          )}
         </div>
       </>
     );

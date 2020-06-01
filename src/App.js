@@ -11,8 +11,8 @@ import LoginPage from "./components/LoginPage/LoginPage";
 import RegistrationPage from "./components/RegistrationPage/RegistrationPage";
 import NotFoundPage from "./components/NotFoundPage/NotFoundPage";
 import TokenService from "./services/token-service";
-import ApiService from "./services/api-service";
 import BookClubContext from "./BookClubContext";
+import config from "./config";
 import "./App.css";
 
 export default class App extends React.Component {
@@ -29,24 +29,44 @@ export default class App extends React.Component {
     });
   };
 
-  getBooks() {
-    ApiService.getBooks().then((res) => {
-      this.setState({
-        books: res,
-      });
-    });
+  setComments = (comments) => {
+    this.setState({
+      comments: comments
+    })
   }
 
   componentDidMount() {
-    this.setUser();
-    this.getBooks();
-  }
+    Promise.all([
+        fetch(`${config.API_ENDPOINT}/books`),
+        fetch(`${config.API_ENDPOINT}/comments`)
+    ])
+        .then(([booksRes, commentsRes]) => {
+            if (!booksRes.ok)
+                return booksRes.json().then(e => Promise.reject(e));
+            if (!commentsRes.ok)
+                return commentsRes.json().then(e => Promise.reject(e));
 
+            return Promise.all([booksRes.json(), commentsRes.json()]);
+        })
+        .then(([books, comments]) => {
+            this.setState({books, comments});
+        })
+        .catch(err => {
+            this.setState({
+              error: err.message
+            });
+        });
+        this.setUser()
+}
   render() {
+
     const contextValue = {
       books: this.state.books,
       getBooks: this.getBooks,
+      setBooks: this.setBooks,
       comments: this.state.comments,
+      setComments: this.setComments,
+      user: this.state.user,
     };
     return (
       <main className="App">
@@ -54,7 +74,13 @@ export default class App extends React.Component {
           <Switch>
             <PrivateRoute exact path="/" component={Dashboard} />
             <PrivateRoute exact path="/books" component={BookList} />
-            <PrivateRoute path={"/book/:bookId"} component={BookPage} />
+            <Route path="/book/:bookId"
+                    render={routeProps => {
+                        return <BookPage {...routeProps} />;
+                    }}
+                />
+
+            {/* <PrivateRoute path={"/book/:bookId"} component={BookPage} books={this.state.books}/> */}
             <PrivateRoute path={"/profile"} component={Profile} />
             <PrivateRoute path={"/messages"} component={Messages} />
             <PublicOnlyRoute
@@ -69,7 +95,6 @@ export default class App extends React.Component {
               path={"/register"}
               component={RegistrationPage}
             />
-
             <Route component={NotFoundPage} />
           </Switch>
         </BookClubContext.Provider>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import CommentForm from "../Comments/CommentForm";
-import Like from "../../img/like.svg";
+
 
 import './Post.css'
 

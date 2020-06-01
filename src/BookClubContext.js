@@ -2,10 +2,11 @@ import React from "react";
 
 const BookClubContext = React.createContext({
   books: [],
-  user: [],
+  setBooks: () => {},
   comments: [],
+  setComments: () => {},
+  user: [],
   setUser: () => {},
-  setBookList: () => {},
 });
 
 export default BookClubContext;

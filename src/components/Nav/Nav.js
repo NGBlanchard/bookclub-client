@@ -33,14 +33,17 @@ const Nav = () => {
       <section className="nav">
         <div className="site-nav">
           <h1 className="nav-header">AL:cove</h1>
-          {TokenService.hasAuthToken() ? renderLogoutLink() : renderLoginLink()}
         </div>
-        <div className="nav-links">
-          <Link to="/">Home</Link>
-          <Link to="/books">Books</Link>
-          <Link to="/messages">Messages</Link>
-          <Link to="/profile">Profile</Link>
-        </div>
+        {TokenService.hasAuthToken() ? (
+          <div className="nav-links">
+            <Link to="/">Home</Link>
+            <Link to="/books">Books</Link>
+            <Link to="/profile">Profile</Link>
+            {TokenService.hasAuthToken() ? renderLogoutLink() : renderLoginLink()}
+          </div>
+        ) : (
+          <div></div>
+        )}
       </section>
     </section>
   );
