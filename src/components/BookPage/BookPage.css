@@ -10,18 +10,31 @@
   flex-direction: column;
 }
 
+.back-button {
+  color: #212121;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  margin: 5px;
+  width: 25px;
+}
+
 .header {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+  position: relative;
 }
 
 .head-info {
   margin-top: 40px;
   margin-right: 10px;
 }
+
 .comments-container {
-  margin-top: 50px;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 0.5px solid rgb(235, 235, 235);
 }
 
 .comment-list {
@@ -38,6 +51,10 @@
 }
 
 .discussion {
+  text-align: center;
   margin-left:5px;
-  margin-bottom: 10px;
+}
+
+.button-cont {
+  text-align: center;
 }

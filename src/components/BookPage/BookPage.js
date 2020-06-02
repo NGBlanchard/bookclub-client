@@ -1,16 +1,15 @@
 import React, { Component } from "react";
+import { NavLink } from "react-router-dom";
 import Nav from "../Nav/Nav";
 import CommentCard from "../Comments/CommentCard";
 import CommentForm from "../Comments/CommentForm";
 import BookClubContext from "../../BookClubContext";
-
+import Arrow from "../../img/icon_arrow.svg";
 import "./BookPage.css";
 
 export default class BookPage extends Component {
   state = {
     add: false,
-    book: [],
-    comments: [],
   };
   static defaultProps = {
     match: { params: {} },
@@ -46,6 +45,9 @@ export default class BookPage extends Component {
         <Nav />
         <div className="book-container">
           <header className="header">
+            <NavLink className="back-button" to="/books">
+              <img className="back-button" src={Arrow} alt="back arrow" />
+            </NavLink>
             <section className="head-info">
               <h1 className="book-title">{book.title}</h1>
               <h2 className="author">by {book.author}</h2>
@@ -60,18 +62,47 @@ export default class BookPage extends Component {
               />
             </section>
           </header>
-          {this.state.add ? (
-            <CommentForm render={bookComments} onSubmit={this.onSubmit} />
-          ) : (
-            <button className="add-button" type="button" onClick={this.onAdd}>
-              Add Comment
-            </button>
-          )}
           {bookComments.length === 0 ? (
-            <div>No COMMENTS</div>
+            <>
+              <h2 className="discussion">No Discussions</h2>
+              {this.state.add ? (
+                <CommentForm
+                  render={bookComments}
+                  onSubmit={this.onSubmit}
+                  onAdd={this.onAdd}
+                />
+              ) : (
+                <div className="button-cont">
+                  <Button
+                    className="add-button"
+                    type="button"
+                    onClick={this.onAdd}
+                  >
+                    Add Discussion Topic
+                  </Button>
+                </div>
+              )}
+            </>
           ) : (
             <section className="comments-container">
-              <h2 className="discussion">Discussion</h2>
+              <h2 className="discussion">Discussions</h2>
+              {this.state.add ? (
+                <CommentForm
+                  render={bookComments}
+                  onSubmit={this.onSubmit}
+                  onAdd={this.onAdd}
+                />
+              ) : (
+                <div className="button-cont">
+                  <Button
+                    className="add-button"
+                    type="button"
+                    onClick={this.onAdd}
+                  >
+                    Add Discussion Topic
+                  </Button>
+                </div>
+              )}
               <ul className="comment-list">
                 {bookComments.map((comment) => (
                   <CommentCard
@@ -87,4 +118,8 @@ export default class BookPage extends Component {
       </>
     );
   }
+}
+
+export function Button({ className, ...props }) {
+  return <button className={["Button", className].join(" ")} {...props} />;
 }

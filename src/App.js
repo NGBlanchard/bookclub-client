@@ -7,6 +7,7 @@ import BookList from "./components/BookList/BookList";
 import Messages from "./components/Messages/Messages";
 import Profile from "./components/Profile/Profile";
 import BookPage from "./components/BookPage/BookPage";
+import CommentPage from "./components/CommentPage/CommentPage";
 import LoginPage from "./components/LoginPage/LoginPage";
 import RegistrationPage from "./components/RegistrationPage/RegistrationPage";
 import NotFoundPage from "./components/NotFoundPage/NotFoundPage";
@@ -31,35 +32,33 @@ export default class App extends React.Component {
 
   setComments = (comments) => {
     this.setState({
-      comments: comments
-    })
-  }
+      comments: comments,
+    });
+  };
 
   componentDidMount() {
     Promise.all([
-        fetch(`${config.API_ENDPOINT}/books`),
-        fetch(`${config.API_ENDPOINT}/comments`)
+      fetch(`${config.API_ENDPOINT}/books`),
+      fetch(`${config.API_ENDPOINT}/comments`),
     ])
-        .then(([booksRes, commentsRes]) => {
-            if (!booksRes.ok)
-                return booksRes.json().then(e => Promise.reject(e));
-            if (!commentsRes.ok)
-                return commentsRes.json().then(e => Promise.reject(e));
+      .then(([booksRes, commentsRes]) => {
+        if (!booksRes.ok) return booksRes.json().then((e) => Promise.reject(e));
+        if (!commentsRes.ok)
+          return commentsRes.json().then((e) => Promise.reject(e));
 
-            return Promise.all([booksRes.json(), commentsRes.json()]);
-        })
-        .then(([books, comments]) => {
-            this.setState({books, comments});
-        })
-        .catch(err => {
-            this.setState({
-              error: err.message
-            });
+        return Promise.all([booksRes.json(), commentsRes.json()]);
+      })
+      .then(([books, comments]) => {
+        this.setState({ books, comments });
+      })
+      .catch((err) => {
+        this.setState({
+          error: err.message,
         });
-        this.setUser()
-}
+      });
+    this.setUser();
+  }
   render() {
-
     const contextValue = {
       books: this.state.books,
       getBooks: this.getBooks,
@@ -74,13 +73,18 @@ export default class App extends React.Component {
           <Switch>
             <PrivateRoute exact path="/" component={Dashboard} />
             <PrivateRoute exact path="/books" component={BookList} />
-            <Route path="/book/:bookId"
-                    render={routeProps => {
-                        return <BookPage {...routeProps} />;
-                    }}
-                />
-
-            {/* <PrivateRoute path={"/book/:bookId"} component={BookPage} books={this.state.books}/> */}
+            <Route
+              path="/book/:bookId"
+              render={(routeProps) => {
+                return <BookPage {...routeProps} />;
+              }}
+            />
+            <Route
+              path="/comment/:commentId"
+              render={(routeProps) => {
+                return <CommentPage {...routeProps} />;
+              }}
+            />
             <PrivateRoute path={"/profile"} component={Profile} />
             <PrivateRoute path={"/messages"} component={Messages} />
             <PublicOnlyRoute

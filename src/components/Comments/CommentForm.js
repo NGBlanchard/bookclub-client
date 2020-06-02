@@ -1,7 +1,8 @@
 import React from 'react'
+import Close from "../../img/icon_close.svg";
 import './CommentForm.css'
 
-export default function CommentForm() {
+export default function CommentForm(props) {
 
   const onComment = e => {
    console.log('comment')
@@ -24,6 +25,13 @@ export default function CommentForm() {
   
   return (
     <form className="CommentForm" onSubmit={onComment}>
+                <button
+            className="close-form-button"
+            type="button"
+            onClick={props.onAdd}
+          >
+            <img className="close-icon" src={Close} alt="close form" />
+</button>
         <div className="content">
           <Textarea
             required
