@@ -15,7 +15,7 @@ export default function CommentCard(props) {
         <div className="subcomment-img-container">
           <img
             className="subcard-user-img"
-            src="https://user-images.githubusercontent.com/11250/39013954-f5091c3a-43e6-11e8-9cac-37cf8e8c8e4e.jpg"
+            src={props.comment.author_img}
             alt="user"
           />
         </div>

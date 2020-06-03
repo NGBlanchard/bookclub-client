@@ -35,13 +35,14 @@ export default class BookPage extends Component {
     const { bookId } = this.props.match.params;
     const book = this.findBook(books, bookId) || { content: "" };
     const bookComments = this.getCommentsForBook(comments, bookId);
-
-    if (!book) {
+    const { profile_img } = JSON.parse(this.props.user)
+  
+    if (!this.props.user || !books) {
       return <div>Loading!!</div>;
-    }
+    } 
     return (
       <>
-        <Nav />
+        <Nav /> 
         <div className="book-container">
           <header className="header">
             <NavLink className="back-button" to="/books">
@@ -79,9 +80,9 @@ export default class BookPage extends Component {
                     onClick={this.onAdd}
                   >
                     <div className="profile-img-container">
-                      <img
+                        <img
                         className="user-img"
-                        src="https://user-images.githubusercontent.com/11250/39013954-f5091c3a-43e6-11e8-9cac-37cf8e8c8e4e.jpg"
+                        src={profile_img}
                         alt="user"
                       />
                     </div>
@@ -99,6 +100,7 @@ export default class BookPage extends Component {
                   onSubmit={this.onSubmit}
                   onAdd={this.onAdd}
                   attached_to={bookId}
+                  title={true}
                 />
               ) : (
                 <div className="button-cont">
@@ -108,9 +110,9 @@ export default class BookPage extends Component {
                     onClick={this.onAdd}
                   >
                     <div className="profile-img-container">
-                      <img
+                        <img
                         className="user-img"
-                        src="https://user-images.githubusercontent.com/11250/39013954-f5091c3a-43e6-11e8-9cac-37cf8e8c8e4e.jpg"
+                        src={profile_img}
                         alt="user"
                       />
                     </div>

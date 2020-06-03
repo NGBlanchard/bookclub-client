@@ -83,7 +83,7 @@ export default class App extends React.Component {
             <Route
               path="/book/:bookId"
               render={(routeProps) => {
-                return <BookPage {...routeProps} />;
+                return <BookPage {...routeProps} user={TokenService.getUser()}/>;
               }}
             />
             <Route

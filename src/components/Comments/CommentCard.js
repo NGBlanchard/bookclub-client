@@ -19,21 +19,28 @@ export default function CommentCard(props) {
           <div className="comment-img-container">
             <img
               className="card-user-img"
-              src="https://user-images.githubusercontent.com/11250/39013954-f5091c3a-43e6-11e8-9cac-37cf8e8c8e4e.jpg"
+              src={props.comment.author_img}
               alt="user"
             />
           </div>
           <NavLink to={`/comment/${comment.id}`}>
             <div className="comment-post-deets">
-              {props.comment.author}
+            <div className="title">
+            {props.comment.title}
+            </div>
               <br />
+              <div className="author-date">
+              {props.comment.author}
+              {" • "}
               <div className="date">
                 <Date date={props.comment.date_created} />
+              </div>
               </div>
             </div>
           </NavLink>
         </div>
         <NavLink to={`/comment/${comment.id}`}>
+          <br />
           <div className="comment-content">{props.comment.content}</div>
         </NavLink>
         <div className="card-footer">

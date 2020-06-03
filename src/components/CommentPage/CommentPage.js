@@ -64,15 +64,18 @@ export default class CommentPage extends React.Component {
               <div className="comment-img-container">
                 <img
                   className="card-user-img"
-                  src="https://user-images.githubusercontent.com/11250/39013954-f5091c3a-43e6-11e8-9cac-37cf8e8c8e4e.jpg"
+                  src={comment.author_img}
                   alt="user"
                 />
               </div>
               <div className="comment-post-deets">
-                {comment.author}
-                {" • "}
-                <div className="date">
-                  <Date className="date" date={comment.date_created} />
+                <div className="title">{comment.title}</div>
+                <div className="author-date">
+                  {comment.author}
+                  {" • "}
+                  <div className="date">
+                    <Date className="date" date={comment.date_created} />
+                  </div>
                 </div>
               </div>
             </div>

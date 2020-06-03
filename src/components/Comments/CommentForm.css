@@ -31,6 +31,18 @@
   cursor: pointer;
 }
 
+
+.NewTitle {
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue",
+  Helvetica, Arial, "Lucida Grande", sans-serif;
+  border: 1px solid #ddd;
+  display: block;
+  border-radius: 4px;
+  margin-top: 15px;
+  padding: 10px;
+  WIDTH: 50%;
+}
+
 .Input,
 .Textarea {
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue",
@@ -48,7 +60,7 @@ textarea:focus,
 input:focus {
   outline: none;
 }
-
+.NewTitle::placeholder,
 .Input::placeholder,
 .Textarea::placeholder {
   color: #ccc;
@@ -59,7 +71,7 @@ input:focus {
 }
 
 .btn-cont {
-  text-align: center;
+  text-align: right;
 }
 
 .Button {
@@ -72,7 +84,7 @@ input:focus {
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue",
   Helvetica, Arial, "Lucida Grande", sans-serif;
   font-weight: lighter;
-  width: 200px;
+  width: 100px;
 }
 
 .Button:hover {

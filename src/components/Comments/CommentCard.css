@@ -1,7 +1,7 @@
 .comment-post-deets {
-  color: rgba(203, 80, 255, 0.735);
+  color: #212121;
   font-weight: bold;
-  font-size: 22px;
+  font-size: 14px;
   display: inline;
   line-height: 15px;
 }
@@ -14,13 +14,25 @@
   line-height: 13px;
 }
 
+.title {
+  color: rgba(203, 80, 255, 0.735);
+  font-weight: bold;
+  font-size: 20px;
+  display: inline;
+}
+
 .comment-content {
-  padding: 20px 0px 5px 0px;
+  padding: 0px 0px 5px 0px;
   color: #212121;
   font-size: 15px;
   text-align: left;
   -webkit-font-smoothing: antialiased;
   transition: all 0.1s ease-in;
+  clear: both;
+}
+
+.card-header {
+  padding-bottom: 7px;
 }
 
 .page-card-header {
@@ -87,10 +99,9 @@
   margin-right: 5px;
 }
 
-.bubble {
-  margin-right: 5px;
+.author-date {
+  margin-top: 5px;
 }
-
 .card-footer {
   border-top: 1px solid #ddd;
   margin-top: 5px;
@@ -113,7 +124,6 @@
 .disc-feed-stats:hover,
 .card-add-button:hover {
   color: rgba(203, 80, 255, 0.735);
-  
 }
 .comment-cont {
   padding-left: 20px;

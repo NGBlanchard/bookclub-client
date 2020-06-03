@@ -38,6 +38,17 @@ export default function CommentForm(props) {
           <img className="close-icon" src={Close} alt="close form" />
           <div className="circle"></div>
         </button>
+        {props.title ? (
+          <NewTitle
+            required
+            aria-label="title Box"
+            name="title"
+            id="title"
+            placeholder="Your title..."
+          ></NewTitle>
+        ) : (
+          <div></div>
+        )}
         <div className="content">
           <Textarea
             required
@@ -46,7 +57,7 @@ export default function CommentForm(props) {
             id="content"
             cols="30"
             rows="3"
-            placeholder="Your words here..."
+            placeholder="Your words..."
           ></Textarea>
         </div>
         <div className="btn-cont">
@@ -62,4 +73,8 @@ export function Textarea({ className, ...props }) {
 }
 export function Button({ className, ...props }) {
   return <button className={["Button", className].join(" ")} {...props} />;
+}
+
+export function NewTitle({ className, ...props }) {
+  return <input className={["NewTitle", className].join(" ")} {...props} />;
 }
