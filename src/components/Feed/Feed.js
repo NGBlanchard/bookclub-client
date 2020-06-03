@@ -3,11 +3,12 @@ import Post from "../Post/Post";
 
 import "./Feed.css";
 
-export default function Feed() {
-  const [feed] = useState(null);
+export default function Feed(props) {
+  const following   = props
+
   return (
     <section className="feed-container">
-      {!feed ? <h1 className="empty-feed">No posts</h1> : <div><Post /></div>}
+      {!following ? <h1 className="empty-feed">No posts</h1> : <div>{props.user.id}</div>}
     </section>
   );
 }

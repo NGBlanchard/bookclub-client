@@ -1,16 +1,9 @@
 import React, { useState } from 'react'
-import CommentForm from "../Comments/CommentForm";
-
-
+import Date from "../../services/Date";
 import './Post.css'
 
 export default function Post(props) {
-  const [ comment, setComment ] = useState(null)
   const [ like, setLike ] = useState(false)
-
-  const onComment = () => {
-    setComment(!comment);
-  };
 
   const onLike = () => {
     setLike(!like)
@@ -18,49 +11,44 @@ export default function Post(props) {
   return (
       <section className="post-container">
         <header>
-          <a href="TK" className="user" target="_blank">
-            <img className="post-avatar" src="TK" alt="TK" />
-          </a>
-          <span>timestamp</span>
+        <div className="subcomment-img-container">
+          <img
+            className="subcard-user-img"
+            src={props.post.author_img}
+            alt="user"
+          />
+        </div>
+        <div className="sub-comment-author">
+          {props.post.author}
+          {" • "}
+          <div className="subdate">
+            <Date date={props.post.date_created} />
+          </div>
+        </div>
         </header>
-        <span className="post-content">Content</span>
-        <footer className="post-footer">
-          <div className="footer-container">
-          <div className="feed-modal-stats">
-            <button
-              className="feed-like-button"
-              type="button"
-              style={{
-                color: !like
-                  ? "lightgray"
-                  : "rgba(203, 80, 255, 0.735)",
-              }}
-              onClick={onLike}
-            >
-              &hearts;
-            </button>
-            <button className="feed-comment-button" onClick={onComment}>
-              &#9998;
-            </button>
+        <p className="sub-comment-content">{props.post.content}</p>
+        <div className="subpage-feed-stats">
+          <button
+            className="subdisc-like-button"
+            type="button"
+            style={{
+              color: !like ? "lightgray" : "rgba(203, 80, 255, 0.735)",
+            }}
+            onClick={onLike}
+          >
+            &hearts;
+          </button>
+          <div
+            className="sublike-text"
+            type="button"
+            style={{
+              color: !like ? "#212121" : "rgba(203, 80, 255, 0.735)",
+            }}
+            onClick={onLike}
+          >
+            Like
           </div>
-          <div className="feed-likes-counter"># of Likes</div>
-          </div>
-          <section className="feed-comment-container">
-            {comment ? <CommentForm /> : <div></div>}
-            {/* {this.props.comments.length < 1 ? (
-            <p>No comments...</p>
-          ) : (
-        <ul className="modal-comment-list">
-              {this.props.comments.map((comment) => (
-                <CommentCard
-                  key={comment.id}
-                  comment={comment}
-                  author={comment.author}
-                />
-              ))}
-            </ul>)} */}
-          </section>
-        </footer>
+        </div>
       </section>
   )
 }

@@ -1,35 +1,40 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import Nav from "../Nav/Nav";
 import Post from "../Post/Post";
 import ProfileHead from './ProfileHead.js'
 import ProfileAbout from './ProfileAbout.js'
-
-import BookClubContext from '../../BookClubContext.js'
 import './Profile.css'
 
-export default function Profile() {
-  const context = useContext(BookClubContext)
+export default function Profile(props) {
+  const { id, profile_img, username, progress, website, description } = JSON.parse(props.user)
+ 
+  const getCommentsForProfile = (comments = [], id) =>
+    !id
+      ? comments
+      : comments.filter((comment) => comment.author_id === id);
 
   const renderGrid = () => {
-    const posts = context.user.profileposts
-    if (!posts || posts[0].content === "") {
+    const comments = props.comments
+    const filteredComments = getCommentsForProfile(comments, id)
+    if (!filteredComments || filteredComments.length === 0) {
       return <h1 className="empty-feed">No posts</h1>
     } else 
-    return posts.map((post) => <Post key={post.id} post={post} />);
+    return filteredComments.map((comment) => <Post key={comment.id} post={comment} />);
   };
 
-  
+  if (!props.user) {
+    return <div>Loading Profile</div>
+  }
   return (
     <>
       <Nav />
       <div>
-        <ProfileHead user={context.user} />
+        <ProfileHead username={username} progress={progress} website={website} profile_img={profile_img}/>
         <div className="upload-form">
           
         </div>
-        <ProfileAbout user={context.user} />
+        <ProfileAbout description={description} />
         <div className="profile-grid-container">{renderGrid()}</div>
-        <Post />
       </div>
     </>
   )

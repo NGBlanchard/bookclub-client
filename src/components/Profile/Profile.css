@@ -12,7 +12,7 @@
   color: #212121;
   margin: 10px;
   width: 95.5%;
-  padding: 5px;
+  padding: 15px;
   border-radius: 5px;
   box-shadow: 0px 9px 10px -8px rgba(0, 0, 0, 0.5);
   background-color: white;
@@ -27,18 +27,4 @@
 
 .profile-info {
   margin-left: 50px;
-}
-
-.edit-profile-button {
-  border: 1px solid #aaa;
-  background-color: ivory;
-  border-radius: 50%;
-  padding: 5px;
-  font-weight: lighter;
-  height: 35px;
-}
-
-.edit-profile-button:hover {
-  cursor: pointer;
-  box-shadow: 0 4px 8px 0 rgba(202, 80, 255, 0.19);
 }
