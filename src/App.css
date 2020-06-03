@@ -19,6 +19,10 @@ body {
   margin: 0 auto;
 }
 
+a {
+  text-decoration: none;
+}
+
 button:focus {outline:0;}
 
 

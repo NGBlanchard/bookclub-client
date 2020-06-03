@@ -13,7 +13,7 @@ const Nav = () => {
   const renderLogoutLink = () => {
     return (
       <div className="nav-logged-in">
-        <NavLink onClick={handleLogoutClick} to="/">
+        <NavLink onClick={handleLogoutClick} to="/" className="nav-link">
           Logout
         </NavLink>
       </div>
@@ -23,7 +23,7 @@ const Nav = () => {
   const renderLoginLink = () => {
     return (
       <div className="nav-not-logged-in">
-        <NavLink to="/login">Login</NavLink>
+        <NavLink to="/login" className="nav-link">Login</NavLink>
       </div>
     );
   };
@@ -36,9 +36,9 @@ const Nav = () => {
         </div>
         {TokenService.hasAuthToken() ? (
           <div className="nav-links">
-            <Link to="/">Home</Link>
-            <Link to="/books">Books</Link>
-            <Link to="/profile">Profile</Link>
+            <Link to="/" className="nav-link">Home</Link>
+            <Link to="/books" className="nav-link">Books</Link>
+            <Link to="/profile" className="nav-link">Profile</Link>
             {TokenService.hasAuthToken() ? renderLogoutLink() : renderLoginLink()}
           </div>
         ) : (

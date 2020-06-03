@@ -2,8 +2,8 @@ import React, { useState, useContext } from "react";
 import BookClubContext from "../../BookClubContext";
 import ApiService from "../../services/api-service";
 import Close from "../../img/icon_close.svg";
-import uuid from "react-uuid";
-import "./CommentForm.css";
+import uuid from 'react-uuid'
+import "./CardCommentForm.css";
 
 export default function CommentForm(props) {
   const [error, setError] = useState(null);
@@ -29,37 +29,34 @@ export default function CommentForm(props) {
   return (
     <>
       {error ? <div>error</div> : <div></div>}
-      <form className="CommentForm" onSubmit={onSubmit}>
+      <form className="CardCommentForm" onSubmit={onSubmit}>
         <button
-          className="close-form-button"
+          className="card-close-form-button"
           type="button"
           onClick={props.onAdd}
         >
-          <img className="close-icon" src={Close} alt="close form" />
-          <div className="circle"></div>
+          <img className="card-close-icon" src={Close} alt="close form" />
         </button>
-        <div className="content">
-          <Textarea
+        <div className="card-comment-content">
+          <CardTextarea
             required
             aria-label="Comment Box"
             name="content"
             id="content"
             cols="30"
             rows="3"
-            placeholder="Your words here..."
-          ></Textarea>
+            placeholder="Add to the conversation..."
+          ></CardTextarea>
         </div>
-        <div className="btn-cont">
-          <Button type="submit">Submit</Button>
-        </div>
+        <CardButton type="submit">Submit</CardButton>
       </form>
     </>
   );
 }
 
-export function Textarea({ className, ...props }) {
-  return <textarea className={["Textarea", className].join(" ")} {...props} />;
+export function CardTextarea({ className, ...props }) {
+  return <textarea className={["CardTextarea", className].join(" ")} {...props} />;
 }
-export function Button({ className, ...props }) {
-  return <button className={["Button", className].join(" ")} {...props} />;
+export function CardButton({ className, ...props }) {
+  return <button className={["CardButton", className].join(" ")} {...props} />;
 }

@@ -1,4 +1,5 @@
 import React from "react";
+import Date from "../../services/Date";
 import Nav from "../Nav/Nav";
 import SubCommentCard from "../Comments/SubCommentCard";
 import CommentForm from "../Comments/CommentForm";
@@ -7,22 +8,29 @@ import Arrow from "../../img/icon_arrow.svg";
 import "./CommentPage.css";
 
 export default class CommentPage extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
-    this.goBack = this.goBack.bind(this); 
- }
+    this.goBack = this.goBack.bind(this);
+  }
   state = {
     add: false,
+    like: false,
   };
   static contextType = BookClubContext;
 
-  goBack(){
+  goBack() {
     this.props.history.goBack();
-}
+  }
 
   onAdd = () => {
     this.setState({
       add: !this.state.add,
+    });
+  };
+
+  onLike = () => {
+    this.setState({
+      like: !this.state.like,
     });
   };
 
@@ -49,15 +57,52 @@ export default class CommentPage extends React.Component {
         <Nav />
         <section className="comment-page-container">
           <button className="comment-back-button" onClick={this.goBack}>
-            <img className="back-button" src={Arrow} alt="back arrow" />
+            <img className="comment-back-button" src={Arrow} alt="back arrow" />
           </button>
           <div className="comment-page-card">
-            <p className="comment-author">
-              {comment.author}
-              {" • "}
-              {comment.date_created}
-            </p>
-            <p className="comment-content">{comment.content}</p>
+            <div className="page-card-header">
+              <div className="comment-img-container">
+                <img
+                  className="card-user-img"
+                  src="https://user-images.githubusercontent.com/11250/39013954-f5091c3a-43e6-11e8-9cac-37cf8e8c8e4e.jpg"
+                  alt="user"
+                />
+              </div>
+              <div className="comment-post-deets">
+                {comment.author}
+                <br />
+                <div className="date">
+                  <Date className="date" date={comment.date_created} />
+                </div>
+              </div>
+            </div>
+            <p className="comment-page-content">{comment.content}</p>
+            <div className="page-feed-stats">
+              <button
+                className="disc-like-button"
+                type="button"
+                style={{
+                  color: !this.state.like
+                    ? "lightgray"
+                    : "rgba(203, 80, 255, 0.735)",
+                }}
+                onClick={this.onLike}
+              >
+                &hearts;
+              </button>
+              <div
+                className="like-text"
+                type="button"
+                style={{
+                  color: !this.state.like
+                    ? "#212121"
+                    : "rgba(203, 80, 255, 0.735)",
+                }}
+                onClick={this.onLike}
+              >
+                Like
+              </div>
+            </div>
           </div>
           {subComments.length === 0 ? (
             <>
@@ -82,7 +127,6 @@ export default class CommentPage extends React.Component {
             </>
           ) : (
             <section className="comments-container">
-              
               <ul className="comment-list">
                 {subComments.map((comment) => (
                   <SubCommentCard

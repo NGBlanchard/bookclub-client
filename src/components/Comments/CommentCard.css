@@ -1,54 +1,129 @@
-.comment-author{
+.comment-post-deets {
   color: rgba(203, 80, 255, 0.735);
   font-weight: bold;
   font-size: 17px;
-  padding: 5px;
-  border-bottom: .5px solid lightgray;
+  display: inline;
+  line-height: 15px;
 }
 
-.comment-content{
-  padding: 0px;
+.date {
+  display: inline;
+  font-weight: lighter;
+  padding-bottom: 4px;
+  font-size: 13.5px;
+  line-height: 13px;
+}
+
+.comment-content {
+  padding: 20px 0px 5px 0px;
   color: #212121;
   font-size: 15px;
   text-align: left;
-  margin-top: 10px;
+  -webkit-font-smoothing: antialiased;
+  transition: all 0.1s ease-in;
+}
+
+.card-header:hover,
+.comment-content:hover {
+  background-color: whitesmoke;
+  -webkit-font-smoothing: antialiased;
+  transition: all 0.1s ease-in;
+  border-radius: 10px;
 }
 
 .comment-card {
+  position: relative;
   border: 1px solid #ddd;
-  display: block;
-  font-size: 1.1em;
-  margin-bottom: 10px;
-  padding: 10px;
-  text-align: left;
+  margin-bottom: 20px;
+  padding: 25px 20px 10px 20px;
   width: 100%;
   border-radius: 10px;
 }
 
-.sub-footer-container {
+.disc-likes-counter {
+  cursor: pointer;
+  font-size: 15px;
+  padding: 0px;
+  padding-left: 8px;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.disc-feed-stats {
+  padding: 0px;
   display: flex;
   flex-direction: row;
-}
-
-.feed-likes-counter {
-  font-size: 14px;
-  font-weight: bold;
-  padding: 0px;
-  margin-top: 4px;
-}
-
-.sub-feed-stats {
-  padding: 0px;
+  justify-content: center;
+  color: #212121;
+  border: none;
+  background-color: white;
+  font-size: 15px;
+  cursor: pointer;
+  /* position: absolute;
+  bottom: -5px; */
 }
 
 .comment-img-container {
   float: left;
+  margin: 0px 15px 0px 0px;
 }
 
 .card-user-img {
   padding: 0px;
   margin: 0px;
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
+}
+
+.disc-like-button {
+  border: none;
+  background: white;
+  font-size: 25px;
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+.bubble {
+  margin-right: 5px;
+}
+
+.card-footer {
+  border-top: 1px solid #ddd;
+  margin-top: 5px;
+  display: flex;
+  flex-direction: row;
+  padding: 5px;
+}
+
+.card-add-button {
+  display: flex;
+  flex-direction: row;
+  color: #212121;
+  border: none;
+  background-color: white;
+  font-size: 15px;
+  cursor: pointer;
+  margin-right: 5px;
+  padding-top: 7px;
+}
+.disc-feed-stats:hover,
+.card-add-button:hover {
+  color: rgba(203, 80, 255, 0.735);
+  
+}
+.comment-cont {
+  /* border-left: 1px solid #ddd; */
+  padding-left: 20px;
+}
+
+.likes-cont,
+.comment-cont {
+  position: relative;
+}
+
+.like-text {
+  margin-right: 20px;
+  margin-top: auto;
+  margin-bottom: auto;
 }
