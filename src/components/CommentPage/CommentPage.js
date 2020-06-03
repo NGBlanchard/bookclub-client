@@ -70,7 +70,7 @@ export default class CommentPage extends React.Component {
               </div>
               <div className="comment-post-deets">
                 {comment.author}
-                <br />
+                {" • "}
                 <div className="date">
                   <Date className="date" date={comment.date_created} />
                 </div>
@@ -145,13 +145,13 @@ export default class CommentPage extends React.Component {
                 />
               ) : (
                 <div className="button-cont">
-                  <button
-                    className="comment-add-button"
+                  <Button
+                    className="add-button"
                     type="button"
                     onClick={this.onAdd}
                   >
-                    &#9998; Add Comment
-                  </button>
+                    Add Comment
+                  </Button>
                 </div>
               )}
             </section>

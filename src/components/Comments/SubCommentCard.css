@@ -2,25 +2,47 @@
   color: rgba(203, 80, 255, 0.735);
   font-weight: bold;
   font-size: 17px;
-  margin-bottom: 20px;
-  padding: 5px;
-  border-bottom: .5px solid lightgray;
+  padding: 13px 5px 0px 5px;
   display: inline-block;
+}
+
+.subdate {
+  display: inline;
+  font-weight: lighter;
+  font-size: 13.5px;
+  line-height: 13px;
+}
+
+.subcomment-img-container {
+  float: left;
+  padding-top: 10px;
+  margin: 0px 5px 0px 0px;
+  text-align: center;
+}
+
+.subcard-user-img {
+    padding: 0px;
+    margin: 0px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
 }
 
 .sub-comment-content{
   color: #212121;
-  font-size: 16px;
+  font-size: 15px;
+  clear: both;
 }
 
-.sub-comment-card {
+.subcomment-card {
   display: block;
   font-size: 1.1em;
   margin-bottom: 10px;
-  padding: 10px;
+  padding: 20px 20px 5px 20px;
   text-align: left;
   width: 100%;
-  border-radius: 5px;
+  border-bottom: .5px solid lightgray;
+
 }
 
 .sub-footer-container {
@@ -28,13 +50,44 @@
   flex-direction: row;
 }
 
-.feed-likes-counter {
+.subfeed-likes-counter {
   font-size: 14px;
   font-weight: bold;
   padding: 0px;
   margin-top: 4px;
 }
 
-.sub-feed-stats {
+.subpage-feed-stats {
+  margin-top: 10px;
   padding: 0px;
+  display: flex;
+  flex-direction: row;
+  color: #212121;
+  border: none;
+  background-color: white;
+  font-size: 15px;
+}
+
+.subpage-feed-stats:hover {
+  color: rgba(203, 80, 255, 0.735);
+  
+}
+
+.sublikes-cont {
+  position: relative;
+}
+
+.sublike-text {
+  margin-right: 20px;
+  margin-top: auto;
+  margin-bottom: auto;
+  cursor: pointer;
+}
+
+.subdisc-like-button {
+  border: none;
+  background: white;
+  font-size: 25px;
+  cursor: pointer;
+  margin-right: 5px;
 }

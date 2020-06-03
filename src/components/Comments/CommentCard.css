@@ -1,7 +1,7 @@
 .comment-post-deets {
   color: rgba(203, 80, 255, 0.735);
   font-weight: bold;
-  font-size: 17px;
+  font-size: 22px;
   display: inline;
   line-height: 15px;
 }
@@ -21,6 +21,11 @@
   text-align: left;
   -webkit-font-smoothing: antialiased;
   transition: all 0.1s ease-in;
+}
+
+.page-card-header {
+  display: flex;
+  align-items: center;
 }
 
 .card-header:hover,
@@ -59,20 +64,18 @@
   background-color: white;
   font-size: 15px;
   cursor: pointer;
-  /* position: absolute;
-  bottom: -5px; */
 }
 
 .comment-img-container {
   float: left;
-  margin: 0px 15px 0px 0px;
+  margin: 0px 10px 0px 0px;
 }
 
 .card-user-img {
   padding: 0px;
   margin: 0px;
-  width: 40px;
-  height: 40px;
+  width: 45px;
+  height: 45px;
   border-radius: 50%;
 }
 
@@ -113,7 +116,6 @@
   
 }
 .comment-cont {
-  /* border-left: 1px solid #ddd; */
   padding-left: 20px;
 }
 
@@ -126,4 +128,5 @@
   margin-right: 20px;
   margin-top: auto;
   margin-bottom: auto;
+  cursor: pointer;
 }
