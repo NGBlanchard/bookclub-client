@@ -1,6 +1,12 @@
 .CommentForm {
   margin-top: 10px;
   margin-bottom: 10px;
+  position: realtive;
+  background-color: whitesmoke;
+  border: 0.5px solid rgb(235, 235, 235);
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0px 9px 10px -8px rgba(0, 0, 0, 0.5);
 }
 
 .close-form-button {
@@ -11,21 +17,24 @@
   align-content: center;
   justify-content: center;
   pointer-events: auto;
-  background-color: white;
+  background: none;
+  position: absolute;
+  right: 25px;
+}
+
+.content {
+  margin-top: 30px;
 }
 
 .close-icon {
-  width: 25px;
-  padding-bottom: 20px;
-  padding-left: 10px;
-}
-
-.close-icon:hover {
+  width: 18px;
   cursor: pointer;
 }
 
 .Input,
 .Textarea {
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue",
+  Helvetica, Arial, "Lucida Grande", sans-serif;
   border: 1px solid #ddd;
   display: block;
   font-size: 1.1em;
@@ -50,7 +59,7 @@ input:focus {
 }
 
 .Button {
-  background-color: ivory;
+  background-color: white;
   height: 35px;
   font-size: 13px;
   margin: 20px 0px 20px 0px;
@@ -66,4 +75,5 @@ input:focus {
   cursor: pointer;
   box-shadow: 0 4px 8px 0 rgb(205, 204, 204);
   transition: all 0.4s ease 0s;
+  color: rgba(203, 80, 255, 0.735);
 }

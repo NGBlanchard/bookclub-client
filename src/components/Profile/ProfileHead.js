@@ -11,7 +11,6 @@ export default function ProfileHead(props) {
         </div>
         <div className="profile-info">
           <h3 className="profile-username">{props.user.username}</h3>
-          <h4 className="profile-current">{props.user.current}</h4>
           <h4 className="profile-progress">{props.user.progress}</h4>
           <h4 className="profile-website-link">{props.user.website}</h4>
         </div>

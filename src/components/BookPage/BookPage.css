@@ -5,9 +5,11 @@
   margin: 10px;
   box-shadow: 0px 9px 10px -8px rgba(0, 0, 0, 0.5);
   padding: 15px;
-  max-width: 1200px;
+  max-width: 1050px;
   display: flex;
   flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .back-button {
@@ -35,6 +37,7 @@
   margin-top: 10px;
   padding-top: 10px;
   border-top: 0.5px solid rgb(235, 235, 235);
+  max-width: 850px;
 }
 
 .comment-list {
@@ -52,9 +55,45 @@
 
 .discussion {
   text-align: center;
-  margin-left:5px;
+  margin-top: 13px;
+  margin-bottom: 20px;
 }
 
 .button-cont {
   text-align: center;
+}
+
+.add-disc-btn {
+  cursor: pointer;
+  background-color: whitesmoke;
+  border: 0.5px solid rgb(235, 235, 235);
+  border-radius: 10px;
+  padding: 5px;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue",
+  Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-weight: lighter;
+  box-shadow: 0px 9px 10px -8px rgba(0, 0, 0, 0.5);
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
+  margin-bottom: 15px;
+}
+
+.add-disc-btn:hover .add-text {
+  color: rgba(203, 80, 255, 0.735);
+  transition: all 0.4s ease 0s;
+}
+
+.user-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin: 10px;
+}
+
+.add-text {
+  margin: 10px;
+  font-weight: bold;
+  color: gray;
 }

@@ -1,15 +1,24 @@
 import React from "react";
 import Nav from "../Nav/Nav";
-import CommentCard from "../Comments/CommentCard";
+import SubCommentCard from "../Comments/SubCommentCard";
 import CommentForm from "../Comments/CommentForm";
 import BookClubContext from "../../BookClubContext";
+import Arrow from "../../img/icon_arrow.svg";
 import "./CommentPage.css";
 
 export default class CommentPage extends React.Component {
+  constructor(props){
+    super(props);
+    this.goBack = this.goBack.bind(this); 
+ }
   state = {
     add: false,
   };
   static contextType = BookClubContext;
+
+  goBack(){
+    this.props.history.goBack();
+}
 
   onAdd = () => {
     this.setState({
@@ -37,8 +46,11 @@ export default class CommentPage extends React.Component {
 
     return (
       <>
-      <Nav />
-      <section className="comment-page-container">
+        <Nav />
+        <section className="comment-page-container">
+          <button className="comment-back-button" onClick={this.goBack}>
+            <img className="back-button" src={Arrow} alt="back arrow" />
+          </button>
           <div className="comment-page-card">
             <p className="comment-author">
               {comment.author}
@@ -47,14 +59,14 @@ export default class CommentPage extends React.Component {
             </p>
             <p className="comment-content">{comment.content}</p>
           </div>
-          {subComments.length || !subComments === 0 ? (
+          {subComments.length === 0 ? (
             <>
-              <h2 className="discussion">No Comments</h2>
               {this.state.add ? (
                 <CommentForm
                   render={subComments}
                   onSubmit={this.onSubmit}
                   onAdd={this.onAdd}
+                  attached_to={commentId}
                 />
               ) : (
                 <div className="button-cont">
@@ -70,36 +82,37 @@ export default class CommentPage extends React.Component {
             </>
           ) : (
             <section className="comments-container">
-              <h2 className="comments-header">Comments</h2>
-              {this.state.add ? (
-                <CommentForm
-                  render={subComments}
-                  onSubmit={this.onSubmit}
-                  onAdd={this.onAdd}
-                />
-              ) : (
-                <div className="button-cont">
-                  <Button
-                    className="add-button"
-                    type="button"
-                    onClick={this.onAdd}
-                  >
-                    Add Comment
-                  </Button>
-                </div>
-              )}
+              
               <ul className="comment-list">
                 {subComments.map((comment) => (
-                  <CommentCard
+                  <SubCommentCard
                     key={comment.id}
                     comment={comment}
                     author={comment.author}
                   />
                 ))}
               </ul>
+              {this.state.add ? (
+                <CommentForm
+                  render={subComments}
+                  onSubmit={this.onSubmit}
+                  onAdd={this.onAdd}
+                  attached_to={commentId}
+                />
+              ) : (
+                <div className="button-cont">
+                  <button
+                    className="comment-add-button"
+                    type="button"
+                    onClick={this.onAdd}
+                  >
+                    &#9998; Add Comment
+                  </button>
+                </div>
+              )}
             </section>
           )}
-      </section>
+        </section>
       </>
     );
   }

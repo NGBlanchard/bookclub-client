@@ -1,8 +1,8 @@
 .comment-page-card {
+  margin-top: 30px;
   background-color: white;
   border: 0.5px solid rgb(235, 235, 235);
   border-radius: 5px;
-  margin: 10px;
   box-shadow: 0px 9px 10px -8px rgba(0, 0, 0, 0.5);
   padding: 15px;
   max-width: 1200px;
@@ -18,8 +18,22 @@
   max-width: 1200px;
   border-radius: 5px;
   box-shadow: 0px 9px 10px -8px rgba(0, 0, 0, 0.5);
+  position: relative;
 }
 
 .comments-header {
   font-size: 15px;;
+}
+
+.comment-back-button {
+  cursor: pointer;
+  background-color: white;
+  border: none;
+}
+
+.comment-add-button {
+  background-color: white;
+  font-size: 20px;
+  border: none;
+  cursor: pointer;
 }

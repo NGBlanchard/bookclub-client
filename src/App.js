@@ -36,6 +36,12 @@ export default class App extends React.Component {
     });
   };
 
+  addComment = (comment) => {
+    this.setState(prevState => ({
+      comments: [...prevState.comments, comment]
+    }));
+  }
+
   componentDidMount() {
     Promise.all([
       fetch(`${config.API_ENDPOINT}/books`),
@@ -65,6 +71,7 @@ export default class App extends React.Component {
       setBooks: this.setBooks,
       comments: this.state.comments,
       setComments: this.setComments,
+      addComment: this.addComment,
       user: this.state.user,
     };
     return (

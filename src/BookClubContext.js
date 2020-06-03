@@ -5,6 +5,7 @@ const BookClubContext = React.createContext({
   setBooks: () => {},
   comments: [],
   setComments: () => {},
+  addComment: () => {},
   user: [],
   setUser: () => {},
 });

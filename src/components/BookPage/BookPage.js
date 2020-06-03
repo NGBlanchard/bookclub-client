@@ -39,7 +39,6 @@ export default class BookPage extends Component {
     if (!book) {
       return <div>Loading!!</div>;
     }
-
     return (
       <>
         <Nav />
@@ -70,6 +69,7 @@ export default class BookPage extends Component {
                   render={bookComments}
                   onSubmit={this.onSubmit}
                   onAdd={this.onAdd}
+                  attached_to={bookId}
                 />
               ) : (
                 <div className="button-cont">
@@ -78,7 +78,14 @@ export default class BookPage extends Component {
                     type="button"
                     onClick={this.onAdd}
                   >
-                    Add Discussion Topic
+                    <div className="profile-img-container">
+                      <img
+                        className="user-img"
+                        src="https://user-images.githubusercontent.com/11250/39013954-f5091c3a-43e6-11e8-9cac-37cf8e8c8e4e.jpg"
+                        alt="user"
+                      />
+                    </div>
+                    <p className="add-text">Add discussion topic...</p>
                   </Button>
                 </div>
               )}
@@ -91,6 +98,7 @@ export default class BookPage extends Component {
                   render={bookComments}
                   onSubmit={this.onSubmit}
                   onAdd={this.onAdd}
+                  attached_to={bookId}
                 />
               ) : (
                 <div className="button-cont">
@@ -99,7 +107,14 @@ export default class BookPage extends Component {
                     type="button"
                     onClick={this.onAdd}
                   >
-                    Add Discussion Topic
+                    <div className="profile-img-container">
+                      <img
+                        className="user-img"
+                        src="https://user-images.githubusercontent.com/11250/39013954-f5091c3a-43e6-11e8-9cac-37cf8e8c8e4e.jpg"
+                        alt="user"
+                      />
+                    </div>
+                    <p className="add-text">Add discussion topic...</p>
                   </Button>
                 </div>
               )}
@@ -121,5 +136,5 @@ export default class BookPage extends Component {
 }
 
 export function Button({ className, ...props }) {
-  return <button className={["Button", className].join(" ")} {...props} />;
+  return <button className="add-disc-btn" {...props} />;
 }

@@ -8,6 +8,10 @@
   max-width: 1200px;
 }
 
+.book-card-inside {
+  text-align: center;
+}
+
 .nav-container {
   height: 60px;
   background-color: #212121;
