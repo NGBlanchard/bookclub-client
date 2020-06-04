@@ -1,8 +1,8 @@
 import React from 'react'
+import DashBar from "../DashBar/DashBar";
 import './Profile.css'
 
 export default function ProfileHead(props) {
-
   return (
     <>
       <section className="profilehead-container">
@@ -12,8 +12,8 @@ export default function ProfileHead(props) {
         </div>
         <div className="profile-info">
           <h3 className="profile-username">{props.username}</h3>
-          <h4 className="profile-progress">{props.progress}</h4>
           <h4 className="profile-website-link">{props.website}</h4>
+          <DashBar />
         </div>
       </section>
       </>

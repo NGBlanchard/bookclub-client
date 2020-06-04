@@ -126,7 +126,7 @@ export default class BookPage extends Component {
                 </div>
               )}
               <ul className="comment-list">
-                {bookComments.map((comment) => (
+                {bookComments.reverse().map((comment) => (
                   <CommentCard
                     key={comment.id}
                     comment={comment}

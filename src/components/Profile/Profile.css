@@ -26,5 +26,15 @@
 }
 
 .profile-info {
-  margin-left: 50px;
+  margin-left: 10px;
+  width: 70%;
+}
+
+.profile-username {
+  margin-left: 10px;
+}
+
+.profile-website-link {
+  margin-left: 10px;
+  font-size: 14px;
 }

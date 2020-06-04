@@ -132,7 +132,7 @@ export default class CommentPage extends React.Component {
           ) : (
             <section className="comments-container">
               <ul className="comment-list">
-                {subComments.map((comment) => (
+                {subComments.reverse().map((comment) => (
                   <SubCommentCard
                     key={comment.id}
                     comment={comment}

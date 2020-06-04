@@ -10,7 +10,7 @@ export default function Feed(props) {
         <h1 className="empty-feed">No posts</h1> 
       : 
         <div>
-          {props.posts.map((post) => (
+          {props.posts.reverse().map((post) => (
                   <Post
                     key={post.id}
                     post={post}
@@ -20,4 +20,5 @@ export default function Feed(props) {
           </div>}
     </section>
   );
+  
 }

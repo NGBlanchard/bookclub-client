@@ -19,7 +19,7 @@ export default function Profile(props) {
     if (!filteredComments || filteredComments.length === 0) {
       return <h1 className="empty-feed">No posts</h1>
     } else 
-    return filteredComments.map((comment) => <Post key={comment.id} post={comment} />);
+    return filteredComments.reverse().map((comment) => <Post key={comment.id} post={comment} />);
   };
 
   if (!props.user) {
