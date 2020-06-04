@@ -9,7 +9,6 @@ export default function Dashboard(props) {
   
   const { following } = props.user;
   const feedPosts = props.comments.filter(comment => comment.book === following[0])
-  
   return (
     <>
       <Nav />

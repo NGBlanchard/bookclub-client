@@ -1,27 +1,24 @@
 .profile-about-container {
   color: #212121;
-  margin: 10px;
-  width: 95.5%;
-  padding: 15px;
-  border-radius: 5px;
+  margin: 0px 10px 10px 10px;
+  padding: 15px 25px 25px 25px;
   box-shadow: 0px 9px 10px -8px rgba(0, 0, 0, 0.5);
   background-color: white;
+  border-top: .5px solid rgb(235, 235, 235);
 }
 
 .profilehead-container {
   color: #212121;
-  margin: 10px;
-  width: 95.5%;
-  padding: 15px;
-  border-radius: 5px;
+  margin: 10px 10px 0px 10px;
+  padding: 25px 25px 15px 25px;
   box-shadow: 0px 9px 10px -8px rgba(0, 0, 0, 0.5);
   background-color: white;
   display: flex;
 }
 
 .profile-img {
-  width: 100px;
-  height: 100px;
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
 }
 

@@ -30,9 +30,6 @@ export default function Profile(props) {
       <Nav />
       <div>
         <ProfileHead username={username} progress={progress} website={website} profile_img={profile_img}/>
-        <div className="upload-form">
-          
-        </div>
         <ProfileAbout description={description} />
         <div className="profile-grid-container">{renderGrid()}</div>
       </div>
