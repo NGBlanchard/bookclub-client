@@ -35,8 +35,8 @@ export default class BookPage extends Component {
     const { bookId } = this.props.match.params;
     const book = this.findBook(books, bookId) || { content: "" };
     const bookComments = this.getCommentsForBook(comments, bookId);
-    const { profile_img } = JSON.parse(this.props.user)
-  
+    const user = JSON.parse(this.props.user)
+
     if (!this.props.user || !books) {
       return <div>Loading!!</div>;
     } 
@@ -73,7 +73,7 @@ export default class BookPage extends Component {
                   attached_to={bookId}
                   bookId={bookId}
                   title={true}
-                  user={this.props.user}
+                  user={user}
                 />
               ) : (
                 <div className="button-cont">
@@ -85,7 +85,7 @@ export default class BookPage extends Component {
                     <div className="profile-img-container">
                         <img
                         className="user-img"
-                        src={profile_img}
+                        src={user.profile_img}
                         alt="user"
                       />
                     </div>
@@ -105,6 +105,7 @@ export default class BookPage extends Component {
                   attached_to={bookId}
                   bookId={bookId}
                   title={true}
+                  user={user}
                 />
               ) : (
                 <div className="button-cont">
@@ -116,7 +117,7 @@ export default class BookPage extends Component {
                     <div className="profile-img-container">
                         <img
                         className="user-img"
-                        src={profile_img}
+                        src={user.profile_img}
                         alt="user"
                       />
                     </div>

@@ -11,7 +11,7 @@ export default function CommentForm(props) {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    const { content } = e.target;
+    const { content, title } = e.target;
     const comment = {
       id: uuid(),
       content: content.value,
@@ -19,12 +19,14 @@ export default function CommentForm(props) {
       author: props.user.username,
       author_id: props.user.id,
       author_img: props.user.profile_img,
-      book: props.bookId
+      book: props.bookId,
+      title: title.value
     };
     ApiService.postComment(comment)
       .then(context.addComment)
       .then(() => {
         content.value = "";
+        title.value="";
       })
       .catch((err) => setError(err));
   };
