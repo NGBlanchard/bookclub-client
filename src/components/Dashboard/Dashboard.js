@@ -6,23 +6,17 @@ import Footer from "../Footer/Footer";
 import "./Dashboard.css";
 
 export default function Dashboard(props) {
-  const { following } = props.user
-  console.log(following)
-
-  const getPostsForFeed = (comments = [], bookId) =>
-    !bookId
-      ? comments
-      : comments.filter((comment) => comment.author_id === bookId);
-
-
-
+  
+  const { following } = props.user;
+  const feedPosts = props.comments.filter(comment => comment.book === following[0])
+  
   return (
     <>
       <Nav />
       <div className="dashboard-main">
         <section className="dashboard-grid-container">
           <DashBar />
-          <Feed user={props.user}/>
+          <Feed user={props.user} posts={feedPosts}/>
           <Footer />
         </section>
       </div>

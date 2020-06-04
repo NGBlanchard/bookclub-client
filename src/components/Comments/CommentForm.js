@@ -16,8 +16,10 @@ export default function CommentForm(props) {
       id: uuid(),
       content: content.value,
       attached_to: props.attached_to,
-      author: context.user.username,
-      author_id: context.user.id,
+      author: props.user.username,
+      author_id: props.user.id,
+      author_img: props.user.profile_img,
+      book: props.bookId
     };
     ApiService.postComment(comment)
       .then(context.addComment)

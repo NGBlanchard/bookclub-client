@@ -26,6 +26,7 @@ export default function CommentForm(props) {
       })
       .catch((err) => setError(err));
   };
+
   return (
     <>
       {error ? <div>error</div> : <div></div>}

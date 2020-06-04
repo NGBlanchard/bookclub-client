@@ -79,7 +79,7 @@ export default class App extends React.Component {
         <BookClubContext.Provider value={contextValue}>
           <Switch>
             <Route exact path="/" render={(routeProps) => {
-                return <Dashboard {...routeProps} user={JSON.parse(TokenService.getUser())}/>;
+                return <Dashboard {...routeProps} comments={this.state.comments} user={JSON.parse(TokenService.getUser())}/>;
               }} />
             <PrivateRoute exact path="/books" component={BookList} />
             <Route
@@ -91,7 +91,7 @@ export default class App extends React.Component {
             <Route
               path="/comment/:commentId"
               render={(routeProps) => {
-                return <CommentPage {...routeProps} />;
+                return <CommentPage {...routeProps} user={JSON.parse(TokenService.getUser())}/>;
               }}
             />
             <Route path={"/profile"} render={(routeProps) => {

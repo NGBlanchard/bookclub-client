@@ -51,7 +51,6 @@ export default class CommentPage extends React.Component {
     if (!comment) {
       return <div>Loading!!</div>;
     }
-
     return (
       <>
         <Nav />
@@ -115,6 +114,8 @@ export default class CommentPage extends React.Component {
                   onSubmit={this.onSubmit}
                   onAdd={this.onAdd}
                   attached_to={commentId}
+                  user={this.props.user}
+                  bookId={comment.book}
                 />
               ) : (
                 <div className="button-cont">
@@ -145,6 +146,8 @@ export default class CommentPage extends React.Component {
                   onSubmit={this.onSubmit}
                   onAdd={this.onAdd}
                   attached_to={commentId}
+                  user={this.props.user}
+                  bookId={comment.book}
                 />
               ) : (
                 <div className="button-cont">

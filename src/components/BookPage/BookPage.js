@@ -71,6 +71,9 @@ export default class BookPage extends Component {
                   onSubmit={this.onSubmit}
                   onAdd={this.onAdd}
                   attached_to={bookId}
+                  bookId={bookId}
+                  title={true}
+                  user={this.props.user}
                 />
               ) : (
                 <div className="button-cont">
@@ -100,6 +103,7 @@ export default class BookPage extends Component {
                   onSubmit={this.onSubmit}
                   onAdd={this.onAdd}
                   attached_to={bookId}
+                  bookId={bookId}
                   title={true}
                 />
               ) : (
