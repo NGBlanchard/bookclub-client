@@ -5,6 +5,7 @@ import SubCommentCard from "../Comments/SubCommentCard";
 import CommentForm from "../Comments/CommentForm";
 import BookClubContext from "../../BookClubContext";
 import Arrow from "../../img/icon_arrow.svg";
+import LikeButton from '../LikeButton/LikeButton'
 import "./CommentPage.css";
 
 export default class CommentPage extends React.Component {
@@ -80,30 +81,7 @@ export default class CommentPage extends React.Component {
             </div>
             <p className="comment-page-content">{comment.content}</p>
             <div className="page-feed-stats">
-              <button
-                className="disc-like-button"
-                type="button"
-                style={{
-                  color: !this.state.like
-                    ? "lightgray"
-                    : "rgba(203, 80, 255, 0.735)",
-                }}
-                onClick={this.onLike}
-              >
-                &hearts;
-              </button>
-              <div
-                className="like-text"
-                type="button"
-                style={{
-                  color: !this.state.like
-                    ? "#212121"
-                    : "rgba(203, 80, 255, 0.735)",
-                }}
-                onClick={this.onLike}
-              >
-                Like
-              </div>
+              <LikeButton attached_to={comment.id}/>
             </div>
           </div>
           {subComments.length === 0 ? (

@@ -32,7 +32,7 @@ const Nav = () => {
     <section className="nav-container">
       <section className="nav">
         <div className="site-nav">
-          <h1 className="nav-header">AL:cove</h1>
+          <h1 className="nav-header">Alcove Reads</h1>
         </div>
         {TokenService.hasAuthToken() ? (
           <div className="nav-links">

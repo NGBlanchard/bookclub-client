@@ -1,14 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import Date from "../../services/Date";
+import LikeButton from '../LikeButton/LikeButton'
 import "./SubCommentCard.css";
 
 export default function CommentCard(props) {
-  const [like, setLike] = useState(false);
 
-  const onLike = () => {
-    setLike(!like);
-    ///API fetch to update likes
-  };
+  
   return (
     <section className="sub-comment-shell">
       <li key={props.comment.id} className="subcomment-card">
@@ -28,26 +25,7 @@ export default function CommentCard(props) {
         </div>
         <p className="sub-comment-content">{props.comment.content}</p>
         <div className="subpage-feed-stats">
-          <button
-            className="subdisc-like-button"
-            type="button"
-            style={{
-              color: !like ? "lightgray" : "rgba(203, 80, 255, 0.735)",
-            }}
-            onClick={onLike}
-          >
-            &hearts;
-          </button>
-          <div
-            className="sublike-text"
-            type="button"
-            style={{
-              color: !like ? "#212121" : "rgba(203, 80, 255, 0.735)",
-            }}
-            onClick={onLike}
-          >
-            Like
-          </div>
+          <LikeButton attached_to={props.comment.id}/>
         </div>
       </li>
     </section>

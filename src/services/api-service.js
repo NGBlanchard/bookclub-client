@@ -41,5 +41,47 @@ const ApiService = {
       !res.ok ? res.json().then((e) => Promise.reject(e)) : res.json()
     );
   },
+  getAllLikes() {
+    return fetch(`${config.API_ENDPOINT}/likes`, {
+      headers: {
+        "content-type": "application/json",
+      },
+    }).then((res) =>
+      !res.ok ? res.json().then((e) => Promise.reject(e)) : res.json()
+    );
+  },
+  getLikes(variable) {
+    return fetch(`${config.API_ENDPOINT}/likes/getLikes`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: variable,
+    }).then((res) =>
+      !res.ok ? res.json().then((e) => Promise.reject(e)) : res.json()
+    );
+  },
+  upLike(variable) {
+    return fetch(`${config.API_ENDPOINT}/likes/upLike`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(variable),
+    }).then((res) =>
+      !res.ok ? res.json().then((e) => Promise.reject(e)) : res.json()
+    );
+  },
+  unLike(variable) {
+    return fetch(`${config.API_ENDPOINT}/likes/unLike`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(variable),
+    }).then((res) =>
+      !res.ok ? res.json().then((e) => Promise.reject(e)) : res.json()
+    );
+  },
 };
 export default ApiService;

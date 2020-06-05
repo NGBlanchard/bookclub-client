@@ -1,0 +1,36 @@
+.like-button-container {
+  padding: 0px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  color: #212121;
+  border: none;
+  background-color: white;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.disc-likes-counter {
+  cursor: pointer;
+  font-size: 15px;
+  padding: 0px;
+  padding-left: 8px;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.like-button {
+  border: none;
+  background: white;
+  font-size: 23px;
+  cursor: pointer;
+  margin-top: 3px;
+  margin-right: 3px;
+}
+
+.like-text {
+  margin-right: 20px;
+  margin-top: 7px;
+  margin-bottom: auto;
+  cursor: pointer;
+}

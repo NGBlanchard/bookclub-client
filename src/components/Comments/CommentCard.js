@@ -1,15 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import Date from "../../services/Date";
 import { NavLink } from "react-router-dom";
+import LikeButton from '../LikeButton/LikeButton'
 import "./CommentCard.css";
 
 export default function CommentCard(props) {
-  const [like, setLike] = useState(false);
-
-  const onLike = () => {
-    setLike(!like);
-    ///API fetch to update likes
-  };
+  
   const { comment } = props;
 
   return (
@@ -44,29 +40,8 @@ export default function CommentCard(props) {
           <div className="comment-content">{props.comment.content}</div>
         </NavLink>
         <div className="card-footer">
-          <div className="likes-cont">
-            <div className="disc-feed-stats">
-              <button
-                className="disc-like-button"
-                type="button"
-                style={{
-                  color: !like ? "lightgray" : "rgba(203, 80, 255, 0.735)",
-                }}
-                onClick={onLike}
-              >
-                &hearts;
-              </button>
-              <div
-                className="like-text"
-                type="button"
-                style={{
-                  color: !like ? "#212121" : "rgba(203, 80, 255, 0.735)",
-                }}
-                onClick={onLike}
-              >
-                Like
-              </div>
-            </div>
+          <div className="likes-cont">           
+              <LikeButton attached_to={comment.id}/>            
           </div>
           <div className="comment-cont">
             <NavLink to={`/comment/${comment.id}`} className="card-add-button">

@@ -1,16 +1,13 @@
-import React, { useState } from 'react'
+import React from "react";
 import Date from "../../services/Date";
-import './Post.css'
+import LikeButton from '../LikeButton/LikeButton'
+import "./Post.css";
 
 export default function Post(props) {
-  const [ like, setLike ] = useState(false)
 
-  const onLike = () => {
-    setLike(!like)
-  }
   return (
-      <section className="post-container">
-        <header>
+    <section className="post-container">
+      <header>
         <div className="subcomment-img-container">
           <img
             className="subcard-user-img"
@@ -25,30 +22,11 @@ export default function Post(props) {
             <Date date={props.post.date_created} />
           </div>
         </div>
-        </header>
-        <p className="sub-comment-content">{props.post.content}</p>
-        <div className="subpage-feed-stats">
-          <button
-            className="subdisc-like-button"
-            type="button"
-            style={{
-              color: !like ? "lightgray" : "rgba(203, 80, 255, 0.735)",
-            }}
-            onClick={onLike}
-          >
-            &hearts;
-          </button>
-          <div
-            className="sublike-text"
-            type="button"
-            style={{
-              color: !like ? "#212121" : "rgba(203, 80, 255, 0.735)",
-            }}
-            onClick={onLike}
-          >
-            Like
-          </div>
-        </div>
-      </section>
-  )
+      </header>
+      <p className="sub-comment-content">{props.post.content}</p>
+      <div className="subpage-feed-stats">
+        <LikeButton attached_to={props.post.id}/>
+      </div>
+    </section>
+  );
 }
