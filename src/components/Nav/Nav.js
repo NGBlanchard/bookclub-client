@@ -1,6 +1,7 @@
 import React from "react";
 import { NavLink, Link } from "react-router-dom";
 import TokenService from "../../services/token-service.js";
+import Logo from '../../img/logo.png'
 import "./Nav.css";
 
 const Nav = () => {
@@ -32,7 +33,10 @@ const Nav = () => {
     <section className="nav-container">
       <section className="nav">
         <div className="site-nav">
-          <h1 className="nav-header">Alcove Reads</h1>
+          <h1 className="nav-header">
+            <img className="nav-logo" src={Logo} alt={"Alcove Reads"}/>
+            Alcove Reads
+          </h1>    
         </div>
         {TokenService.hasAuthToken() ? (
           <div className="nav-links">

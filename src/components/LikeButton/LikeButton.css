@@ -34,3 +34,17 @@
   margin-bottom: auto;
   cursor: pointer;
 }
+
+.counter {
+  font-size: 12px;
+  display: flex;
+  flex-direction: row;
+  color: gray;
+  padding-top: 2.5px;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.counter-number {
+  margin-right: 4px;
+}

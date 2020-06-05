@@ -19,35 +19,38 @@ export default function LikeButton(props) {
     user: userId,
     id: id,
   };
+  const unLikeVariable = {
+    attached_to: props.attached_to,
+    user: userId,
+  };
 
   useEffect(() => {
     Axios.post(`${config.API_ENDPOINT}/likes/getLikes`, variable)
-    // ApiService.getAllLikes(variable)
-        .then(response => {
-            if (response.data.success) {
-                setCounter(response.data.likes.length)
-                response.data.likes.map(like => {
-                    if (like.user === userId) {
-                        setLike(true)
-                    }
-                    return null
-                })
-            } else {
-                console.log('Failed to get likes')
+      // ApiService.getAllLikes(variable)
+      .then((response) => {
+        if (response.data.success) {
+          setCounter(response.data.likes.length);
+          response.data.likes.map((like) => {
+            if (like.user === userId) {
+              setLike(true);
             }
-        })
+            return null;
+          });
+        } else {
+          console.log("Failed to get likes");
+        }
+      });
   }, [variable, userId]);
 
   const onLike = () => {
     setLike(!like);
 
     if (!like) {
-      Axios.post(
-        `${config.API_ENDPOINT}/likes/upLike`,
-        upLikeVariable
-      ).then(setCounter(counter + 1));
+      Axios.post(`${config.API_ENDPOINT}/likes/upLike`, upLikeVariable).then(
+        setCounter(counter + 1)
+      );
       // ApiService.upLike(upLikeVariable).then(setCounter(counter + 1))
-    } else ApiService.unLike().then(setCounter(counter - 1));
+    } else ApiService.unLike(unLikeVariable).then(setCounter(counter - 1));
   };
   return (
     <div className="like-button-container">
@@ -71,7 +74,11 @@ export default function LikeButton(props) {
       >
         Like
       </div>
-      <div className="counter">{counter}</div>
+      <div className="counter">
+        <div className="counter-number">{counter > 0 ? counter : null}</div>
+        <div>{counter === 1 ? "like" : null}</div>
+        <div>{counter > 1 ? "likes" : null}</div>
+      </div>
     </div>
   );
 }

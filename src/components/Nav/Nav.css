@@ -3,8 +3,6 @@
   -webkit-font-smoothing: antialiased;
   transition: all 0.2s ease-in;
   margin: 0 auto;
-  /* display: flex;
-  justify-content: space-between; */
   height: 55px;
   padding: 0 16px;
   z-index: 999;
@@ -22,7 +20,10 @@
 .nav-header {
   color: white;
   font-weight: bold;
-  font-size: 20px;
+  font-size: 15px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 .nav-header:hover,
 .site-nav:hover .nav-header {
@@ -35,27 +36,25 @@
   left: 0;
   padding: 0;
   margin: 0;
-  display: flex;
   align-items: center;
 }
 
 .nav-logo {
   float: left;
-  padding: 0;
-  padding-right: 20px;
-  height: 50px;
-  margin: 2px 0px 2px 0px;
+  height: 40px;
+  margin: 0px 2px 0px 0px;
 }
 
 .nav-link {
   color: white;
   text-align: center;
-  padding: 14px 16px;
+  padding: 12px 14px;
   text-decoration: none;
   font-size: 15px;
 }
 .nav-link:hover {
   cursor: pointer;
+  color: rgba(203, 80, 255, 0.735)
 }
 
 .nav-links {

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Nav from "../Nav/Nav";
 import ApiService from "../../services/api-service";
 import TokenService from "../../services/token-service";
+import Logo from '../../img/logo.png'
 import "./Login.css";
 
 const Login = (props) => {
@@ -52,9 +53,11 @@ const Login = (props) => {
       <Nav />
       <section className="login-page">
         <section className="form">
+        <h1 className="login-title">Alcove Reads</h1>
           <center>
-            {/* <img className="login-logo" src={Logo} alt="umap logo" /> */}
+            <img className="login-logo" src={Logo} alt="app logo" />
           </center>
+          
           <span role="alert">{error && <p className="red">{error}</p>}</span>
           <form onSubmit={handleSubmit} className="login-form">
             <input

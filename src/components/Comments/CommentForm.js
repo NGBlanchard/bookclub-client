@@ -43,17 +43,20 @@ export default function CommentForm(props) {
           <div className="circle"></div>
         </button>
         {props.title ? (
+          <>
+          Title:
           <NewTitle
             required
             aria-label="title Box"
             name="title"
             id="title"
             placeholder="Your title..."
-          ></NewTitle>
+          ></NewTitle></>
         ) : (
           <div></div>
         )}
         <div className="content">
+          Toughts:
           <Textarea
             required
             aria-label="Comment Box"

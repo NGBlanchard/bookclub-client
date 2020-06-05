@@ -1,6 +1,14 @@
 .login-logo {
-  height: 70px;
-  margin: 5px;
+  height: 60px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border: 0.5px solid rgb(235, 235, 235);
+  padding: 5px;
+  border-radius: 50px;
+  box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+.login-title {
+  font-size: 35px;
 }
 .login-page {
   width: 360px;
@@ -52,6 +60,6 @@
 }
 
 .red {
-  color: #ff0000;
+  color: red;
   font-weight: bold;
 }
