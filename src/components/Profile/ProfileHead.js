@@ -1,5 +1,5 @@
 import React from 'react'
-import DashBar from "../DashBar/DashBar";
+import ProfileDash from "../DashBar/ProfileDash";
 import './Profile.css'
 
 export default function ProfileHead(props) {
@@ -13,7 +13,7 @@ export default function ProfileHead(props) {
         <div className="profile-info">
           <h3 className="profile-username">{props.username}</h3>
           <h4 className="profile-website-link">{props.website}</h4>
-          <DashBar />
+          <ProfileDash />
         </div>
       </section>
       </>

@@ -20,6 +20,7 @@ export default function BookCard(props) {
         <span className="back">
           <h3 className="title">{props.book.title}</h3>
           <h4 className="pubdate">{props.book.pubdate}</h4>
+          <p className="description">{props.book.description}</p>
         </span>
       </div>
     </div>

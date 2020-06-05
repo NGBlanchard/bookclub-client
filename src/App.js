@@ -30,6 +30,12 @@ export default class App extends React.Component {
     });
   };
 
+  updateUserProgress = (prog) => {
+    let user = {...this.state.user}
+    user.progress = prog
+    this.setState({ user })
+  }
+
   setComments = (comments) => {
     this.setState({
       comments: comments,
@@ -73,7 +79,9 @@ export default class App extends React.Component {
       setComments: this.setComments,
       addComment: this.addComment,
       user: this.state.user,
+      updateUserProgress: this.updateUserProgress
     };
+    
     return (
       <main className="App">
         <BookClubContext.Provider value={contextValue}>

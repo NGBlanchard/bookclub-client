@@ -8,6 +8,7 @@ const BookClubContext = React.createContext({
   addComment: () => {},
   user: [],
   setUser: () => {},
+  updateUserProgress: () => {},
 });
 
 export default BookClubContext;

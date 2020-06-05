@@ -58,14 +58,14 @@
 }
 
 .back {
-	background-color: #212121;
+	background-color: ivory;
   transform: rotateY(180deg);
 	box-shadow : 0px 1px 5px #212121;
 	overflow: auto;
 	padding: 15px;
 	font-family: 'Open Sans Condensed', sans-serif;
 	font-size: 19px;
-	color: lightgray;
+	color: #212121;
 	max-width: 200px;
 }
 
@@ -85,4 +85,8 @@
 .yes-box {
 	margin: 5px;
 	border-top: solid, 1px, lightgray;
+}
+
+.description {
+	font-size: 16px;
 }
