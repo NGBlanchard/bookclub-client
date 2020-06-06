@@ -6,7 +6,7 @@ export default function Messages() {
   return (
     <>
       <Nav />
-      Messages
+   
     </>
   )
 }

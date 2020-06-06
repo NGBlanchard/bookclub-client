@@ -31,10 +31,10 @@ export default class App extends React.Component {
   };
 
   updateUserProgress = (prog) => {
-    let user = {...this.state.user}
-    user.progress = prog
-    this.setState({ user })
-  }
+    let user = { ...this.state.user };
+    user.progress = prog;
+    this.setState({ user });
+  };
 
   setComments = (comments) => {
     this.setState({
@@ -43,10 +43,10 @@ export default class App extends React.Component {
   };
 
   addComment = (comment) => {
-    this.setState(prevState => ({
-      comments: [...prevState.comments, comment]
+    this.setState((prevState) => ({
+      comments: [...prevState.comments, comment],
     }));
-  }
+  };
 
   componentDidMount() {
     Promise.all([
@@ -70,8 +70,9 @@ export default class App extends React.Component {
       });
     this.setUser();
   }
+
   render() {
-    const contextValue = {
+const contextValue = {
       books: this.state.books,
       getBooks: this.getBooks,
       setBooks: this.setBooks,
@@ -79,32 +80,58 @@ export default class App extends React.Component {
       setComments: this.setComments,
       addComment: this.addComment,
       user: this.state.user,
-      updateUserProgress: this.updateUserProgress
+      updateUserProgress: this.updateUserProgress,
     };
-    
+
     return (
       <main className="App">
         <BookClubContext.Provider value={contextValue}>
           <Switch>
-            <Route exact path="/" render={(routeProps) => {
-                return <Dashboard {...routeProps} comments={this.state.comments} user={JSON.parse(TokenService.getUser())}/>;
-              }} />
+            <Route
+              exact
+              path="/"
+              render={(routeProps) => {
+                return (
+                  <Dashboard
+                    {...routeProps}
+                    comments={this.state.comments}
+                    user={JSON.parse(TokenService.getUser())}
+                  />
+                );
+              }}
+            />
             <PrivateRoute exact path="/books" component={BookList} />
             <Route
               path="/book/:bookId"
               render={(routeProps) => {
-                return <BookPage {...routeProps} user={TokenService.getUser()}/>;
+                return (
+                  <BookPage {...routeProps} user={TokenService.getUser()} />
+                );
               }}
             />
             <Route
               path="/comment/:commentId"
               render={(routeProps) => {
-                return <CommentPage {...routeProps} user={JSON.parse(TokenService.getUser())}/>;
+                return (
+                  <CommentPage
+                    {...routeProps}
+                    user={JSON.parse(TokenService.getUser())}
+                  />
+                );
               }}
             />
-            <Route path={"/profile"} render={(routeProps) => {
-                return <Profile {...routeProps} comments={this.state.comments} user={TokenService.getUser()}/>;
-              }} />
+            <Route
+              path={"/profile"}
+              render={(routeProps) => {
+                return (
+                  <Profile
+                    {...routeProps}
+                    comments={this.state.comments}
+                    user={TokenService.getUser()}
+                  />
+                );
+              }}
+            />
             <PrivateRoute path={"/messages"} component={Messages} />
             <PublicOnlyRoute
               restrictied={false}

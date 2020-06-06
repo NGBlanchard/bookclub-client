@@ -1,30 +1,38 @@
-import React from 'react'
+import React from "react";
 import { NavLink } from "react-router-dom";
-import './BookCard.css'
+import Axios from "axios";
+import TokenService from "../../services/token-service";
+import config from "../../config.js";
+import "./BookCard.css";
 
 export default function BookCard(props) {
+  const user = JSON.parse(TokenService.getUser());
   const { book } = props;
-  
+
+  const variable = { user: user.id, following: book.id };
+
+  const updateFollowing = async (e) => {
+    console.log(variable)
+    Axios.post(`${config.API_ENDPOINT}/users/following`, variable)
+    .then(res => console.log(res));
+   
+  };
+
   return (
     <NavLink to={`/book/${book.id}`} className="book-shell">
-    <div className="bookcard-container">
-      <div className="flipper">
-        <span className="front">
-          <img className="cover"
-            src={
-              props.book.cover 
-            }
-            alt="cover art"
-          />
-        </span>
-        <span className="back">
-          <h3 className="title">{props.book.title}</h3>
-          <h4 className="pubdate">{props.book.pubdate}</h4>
-          <p className="description">{props.book.description}</p>
-        </span>
+      <div className="bookcard-container">
+        <div className="flipper">
+          <span className="front">
+            <img className="cover" src={book.cover} alt="cover art" />
+          </span>
+          <span className="back">
+            <h3 className="title">{book.title}</h3>
+            {/* <button className="reading-btn" onClick={updateFollowing}>Reading?</button> */}
+            <h4 className="pubdate">{book.pubdate}</h4>
+            <p className="description">{book.description}</p>
+          </span>
+        </div>
       </div>
-    </div>
     </NavLink>
-
-  )
+  );
 }
