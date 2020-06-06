@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import Date from "../../services/Date";
 import LikeButton from '../LikeButton/LikeButton'
 import "./Post.css";
@@ -24,8 +25,16 @@ export default function Post(props) {
         </div>
       </header>
       <p className="sub-comment-content">{props.post.content}</p>
+      <div className="post-footer">
       <div className="subpage-feed-stats">
         <LikeButton attached_to={props.post.id}/>
+      </div>
+      <NavLink to={"/"} className="to-discussion">
+        Go to Discussion
+        <div className="go">
+        &#x2192;
+        </div>
+      </NavLink>
       </div>
     </section>
   );

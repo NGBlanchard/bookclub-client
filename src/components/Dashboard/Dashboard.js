@@ -26,6 +26,11 @@ export default function Dashboard(props) {
       <div className="dashboard-main">
         <section className="dashboard-grid-container">
           <DashBar book={book} user={props.user}/>
+          <div className="recent-posts">
+            <div className="pointer">&#9759;</div> 
+            {feedPosts.length} Recent Posts 
+            <div className="pointer">&#9759;</div> 
+          </div>
           <Feed user={props.user} posts={feedPosts}/>
           <Footer />
         </section>

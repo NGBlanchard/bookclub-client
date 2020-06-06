@@ -42,13 +42,35 @@
   background-color: white;
 }
 
-.footer-container {
+.post-footer {
   display:flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
 }
 
 .feed-likes-counter {
   padding: 5px;
   float: right;
+}
+
+.to-discussion {
+  color: #212121;
+  margin-top: 15px;
+  font-weight: normal;
+  display: flex;
+  flex-direction: row;
+}
+
+.to-discussion:hover {
+  color: rgba(203, 80, 255, 0.735);
+}
+
+.to-discussion:hover .go {
+  display: inline;
+}
+
+.go {
+  margin-left: 5px; 
+  display: none;
 }

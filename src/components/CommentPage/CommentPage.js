@@ -1,149 +1,148 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Date from "../../services/Date";
 import Nav from "../Nav/Nav";
 import SubCommentCard from "../Comments/SubCommentCard";
 import CommentForm from "../Comments/CommentForm";
-import BookClubContext from "../../BookClubContext";
 import Arrow from "../../img/icon_arrow.svg";
-import LikeButton from '../LikeButton/LikeButton'
+import LikeButton from "../LikeButton/LikeButton";
+import config from "../../config.js";
+import ApiService from "../../services/api-service";
 import "./CommentPage.css";
 
-export default class CommentPage extends React.Component {
-  constructor(props) {
-    super(props);
-    this.goBack = this.goBack.bind(this);
-  }
-  state = {
-    add: false,
-    like: false,
+export default function CommentPage(props) {
+  const [error, setError] = useState(null);
+  const [add, setAdd] = useState(false);
+  const [comment, setComment] = useState(null);
+  const [comments, setComments] = useState(null);
+  const [subComments, setSubComments] = useState(null);
+
+  useEffect(() => {
+    const { commentId } = props.match.params;
+    Promise.all([fetch(`${config.API_ENDPOINT}/comments`)])
+      .then(([commentRes]) => {
+        if (!commentRes.ok)
+          return commentRes.json().then((e) => Promise.reject(e));
+        return Promise.all([commentRes.json()]);
+      })
+      .then(([comments]) => {
+        setComments(comments);
+        setComment(findComment(comments, commentId));
+        setSubComments(getCommentsForComments(comments, commentId));
+      });
+  }, [props.match.params]);
+
+  const goBack = () => {
+    props.history.goBack();
   };
-  static contextType = BookClubContext;
 
-  goBack() {
-    this.props.history.goBack();
-  }
-
-  onAdd = () => {
-    this.setState({
-      add: !this.state.add,
-    });
+  const onUpdate = (newComment) => {
+    setSubComments([...subComments, newComment]);
+    ApiService.postComment(newComment).catch((err) => setError(err));
+    onAdd();
   };
 
-  onLike = () => {
-    this.setState({
-      like: !this.state.like,
-    });
+  const onAdd = () => {
+    setAdd(!add);
   };
 
-  findComment = (comments = [], commentId) =>
+  const findComment = (comments = [], commentId) =>
     comments.find((comment) => comment.id === commentId);
 
-  getCommentsForComments = (comments = [], commentId) =>
+  const getCommentsForComments = (comments = [], commentId) =>
     !commentId
       ? comments
       : comments.filter((subComment) => subComment.attached_to === commentId);
 
-  render() {
-    const { comments = [] } = this.context;
-    const { commentId } = this.props.match.params;
-    const comment = this.findComment(comments, commentId) || { content: "" };
-    const subComments = this.getCommentsForComments(comments, commentId);
+  const { commentId } = props.match.params;
 
-    if (!comment) {
-      return <div>Loading!!</div>;
-    }
-    return (
-      <>
-        <Nav />
-        <section className="comment-page-container">
-          <button className="comment-back-button" onClick={this.goBack}>
-            <img className="comment-back-button" src={Arrow} alt="back arrow" />
-          </button>
-          <div className="comment-page-card">
-            <div className="page-card-header">
-              <div className="comment-img-container">
-                <img
-                  className="card-user-img"
-                  src={comment.author_img}
-                  alt="user"
-                />
-              </div>
-              <div className="comment-post-deets">
-                <div className="title">{comment.title}</div>
-                <div className="author-date">
-                  {comment.author}
-                  {" • "}
-                  <div className="date">
-                    <Date className="date" date={comment.date_created} />
-                  </div>
+  if (!comments || !comment || !subComments) {
+    return <div>Loading!!</div>;
+  }
+  return (
+    <>
+      <Nav />
+      <section className="comment-page-container">
+        {error ? <div>error</div> : <div></div>}
+        <button className="comment-back-button" onClick={goBack}>
+          <img className="comment-back-button" src={Arrow} alt="back arrow" />
+        </button>
+        <div className="comment-page-card">
+          <div className="page-card-header">
+            <div className="comment-img-container">
+              <img
+                className="card-user-img"
+                src={comment.author_img}
+                alt="user"
+              />
+            </div>
+            <div className="comment-post-deets">
+              <div className="title">{comment.title}</div>
+              <div className="author-date">
+                {comment.author}
+                {" • "}
+                <div className="date">
+                  <Date className="date" date={comment.date_created} />
                 </div>
               </div>
-            </div>
-            <p className="comment-page-content">{comment.content}</p>
-            <div className="page-feed-stats">
-              <LikeButton attached_to={comment.id}/>
             </div>
           </div>
-          {subComments.length === 0 ? (
-            <>
-              {this.state.add ? (
-                <CommentForm
-                  render={subComments}
-                  onSubmit={this.onSubmit}
-                  onAdd={this.onAdd}
-                  attached_to={commentId}
-                  user={this.props.user}
-                  bookId={comment.book}
+          <p className="comment-page-content">{comment.content}</p>
+          <div className="page-feed-stats">
+            <LikeButton attached_to={comment.id} />
+          </div>
+        </div>
+        {subComments.length === 0 ? (
+          <>
+            {add ? (
+              <CommentForm
+                render={subComments}
+                onUpdate={onUpdate}
+                attached_to={commentId}
+                user={props.user}
+                bookId={comment.book}
+                onAdd={onAdd}
+              />
+            ) : (
+              <div className="button-cont">
+                <Button className="add-button" type="button" onClick={onAdd}>
+                  Add Comment
+                </Button>
+              </div>
+            )}
+          </>
+        ) : (
+          <section className="comments-container">
+            <ul className="comment-list">
+              {subComments.reverse().map((comment) => (
+                <SubCommentCard
+                  key={comment.id}
+                  comment={comment}
+                  author={comment.author}
                 />
-              ) : (
-                <div className="button-cont">
-                  <Button
-                    className="add-button"
-                    type="button"
-                    onClick={this.onAdd}
-                  >
-                    Add Comment
-                  </Button>
-                </div>
-              )}
-            </>
-          ) : (
-            <section className="comments-container">
-              <ul className="comment-list">
-                {subComments.reverse().map((comment) => (
-                  <SubCommentCard
-                    key={comment.id}
-                    comment={comment}
-                    author={comment.author}
-                  />
-                ))}
-              </ul>
-              {this.state.add ? (
-                <CommentForm
-                  render={subComments}
-                  onSubmit={this.onSubmit}
-                  onAdd={this.onAdd}
-                  attached_to={commentId}
-                  user={this.props.user}
-                  bookId={comment.book}
-                />
-              ) : (
-                <div className="button-cont">
-                  <Button
-                    className="add-button"
-                    type="button"
-                    onClick={this.onAdd}
-                  >
-                    Add Comment
-                  </Button>
-                </div>
-              )}
-            </section>
-          )}
-        </section>
-      </>
-    );
-  }
+              ))}
+            </ul>
+            {add ? (
+              <CommentForm
+                render={subComments}
+                attached_to={commentId}
+                user={props.user}
+                bookId={comment.book}
+                onUpdate={onUpdate}
+                onAdd={onAdd}
+
+              />
+            ) : (
+              <div className="button-cont">
+                <Button className="add-button" type="button" onClick={onAdd}>
+                  Add Comment
+                </Button>
+              </div>
+            )}
+          </section>
+        )}
+      </section>
+    </>
+  );
 }
 
 export function Button({ className, ...props }) {

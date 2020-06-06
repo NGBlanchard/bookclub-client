@@ -1,14 +1,9 @@
-import React, { useState, useContext } from "react";
-import BookClubContext from "../../BookClubContext";
-import ApiService from "../../services/api-service";
+import React from "react";
 import Close from "../../img/icon_close.svg";
 import uuid from "react-uuid";
 import "./CommentForm.css";
 
 export default function CommentForm(props) {
-  const [error, setError] = useState(null);
-  const context = useContext(BookClubContext);
-
   const onSubmit = (e) => {
     e.preventDefault();
     const { content, title } = e.target;
@@ -22,17 +17,11 @@ export default function CommentForm(props) {
       book: props.bookId,
       title: title.value
     };
-    ApiService.postComment(comment)
-      .then(context.addComment)
-      .then(() => {
-        content.value = "";
-        title.value="";
-      })
-      .catch((err) => setError(err));
+    props.onUpdate(comment);
   };
+
   return (
     <>
-      {error ? <div>error</div> : <div></div>}
       <form className="CommentForm" onSubmit={onSubmit}>
         <button
           className="close-form-button"
@@ -44,7 +33,9 @@ export default function CommentForm(props) {
         </button>
         {props.title ? (
           <>
-          Title:
+          <h4 className="form-label">
+          Title of New Discussion:
+          </h4>
           <NewTitle
             required
             aria-label="title Box"
@@ -56,7 +47,9 @@ export default function CommentForm(props) {
           <div></div>
         )}
         <div className="content">
-          Toughts:
+          <h4 className="form-label">
+          Add new comment:
+          </h4>
           <Textarea
             required
             aria-label="Comment Box"

@@ -4,25 +4,51 @@ import Nav from "../Nav/Nav";
 import CommentCard from "../Comments/CommentCard";
 import CommentForm from "../Comments/CommentForm";
 import BookClubContext from "../../BookClubContext";
+import ApiService from "../../services/api-service";
 import Arrow from "../../img/icon_arrow.svg";
 import "./BookPage.css";
 
 export default class BookPage extends Component {
   state = {
     add: false,
+    book: [],
+    bookComments: [],
   };
   static defaultProps = {
     match: { params: {} },
   };
   static contextType = BookClubContext;
 
+  // componentDidMount() {
+  //   const { books = [], comments = [] } = this.context;
+  //   const { bookId } = this.props.match.params;
+  //   const book = this.findBook(books, bookId) || { content: "" };
+  //   this.setState({
+  //     book: book,
+  //   });
+  //   const bookComments = this.getCommentsForBook(comments, bookId);
+  //   this.setState({
+  //     bookComments: bookComments,
+  //   });
+  // }
+
+  addComment = comment => {
+    this.setState(prevState => ({
+      comments: [...prevState.comments, comment]
+    }));
+  };
+
+  onUpdate = (newComment) => {
+    ApiService.postComment(newComment)
+    this.context.addComment(newComment)
+    this.onAdd();
+  };
+
   onAdd = () => {
     this.setState({
       add: !this.state.add,
     });
   };
-
-  onSubmit = () => {};
 
   findBook = (books = [], bookId) => books.find((book) => book.id === bookId);
   getCommentsForBook = (comments = [], bookId) =>
@@ -35,14 +61,14 @@ export default class BookPage extends Component {
     const { bookId } = this.props.match.params;
     const book = this.findBook(books, bookId) || { content: "" };
     const bookComments = this.getCommentsForBook(comments, bookId);
-    const user = JSON.parse(this.props.user)
+    const user = JSON.parse(this.props.user);
 
-    if (!this.props.user || !books) {
+    if (!user || !book) {
       return <div>Loading!!</div>;
-    } 
+    }
     return (
       <>
-        <Nav /> 
+        <Nav />
         <div className="book-container">
           <header className="header">
             <NavLink className="back-button" to="/books">
@@ -68,12 +94,12 @@ export default class BookPage extends Component {
               {this.state.add ? (
                 <CommentForm
                   render={bookComments}
-                  onSubmit={this.onSubmit}
                   onAdd={this.onAdd}
                   attached_to={bookId}
                   bookId={bookId}
                   title={true}
                   user={user}
+                  onUpdate={this.onUpdate}
                 />
               ) : (
                 <div className="button-cont">
@@ -83,7 +109,7 @@ export default class BookPage extends Component {
                     onClick={this.onAdd}
                   >
                     <div className="profile-img-container">
-                        <img
+                      <img
                         className="user-img"
                         src={user.profile_img}
                         alt="user"
@@ -100,12 +126,12 @@ export default class BookPage extends Component {
               {this.state.add ? (
                 <CommentForm
                   render={bookComments}
-                  onSubmit={this.onSubmit}
                   onAdd={this.onAdd}
                   attached_to={bookId}
                   bookId={bookId}
                   title={true}
                   user={user}
+                  onUpdate={this.onUpdate}
                 />
               ) : (
                 <div className="button-cont">
@@ -115,7 +141,7 @@ export default class BookPage extends Component {
                     onClick={this.onAdd}
                   >
                     <div className="profile-img-container">
-                        <img
+                      <img
                         className="user-img"
                         src={user.profile_img}
                         alt="user"

@@ -1,0 +1,20 @@
+.recent-posts {
+  justify-content: space-evenly;
+  width: 180px;
+  display: flex;
+  flex-direction: row;
+  font-size: 15px;
+  font-weight: bold;
+  color: #212121;
+  margin: 10px;
+  padding: 10px 10px 10px 10px;
+  border-radius: 5px;
+  box-shadow: 0px 9px 10px -8px rgba(0, 0, 0, 0.5);
+  background-color: ivory;
+  background: linear-gradient(to bottom, rgb(255, 255, 255), lightgray);
+}
+
+.pointer {
+  font-size: 20px;
+  
+}

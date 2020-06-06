@@ -44,7 +44,6 @@ export default function LikeButton(props) {
 
   const onLike = () => {
     setLike(!like);
-
     if (!like) {
       Axios.post(`${config.API_ENDPOINT}/likes/upLike`, upLikeVariable).then(
         setCounter(counter + 1)
