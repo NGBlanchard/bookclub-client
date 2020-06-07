@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useState, useContext } from "react";
 import Nav from "../Nav/Nav";
 import DashBar from "../DashBar/DashBar";
 import Feed from "../Feed/Feed";
@@ -7,7 +7,7 @@ import BookClubContext from "../../BookClubContext";
 import "./Dashboard.css";
 
 export default function Dashboard(props) {
-
+const [ loaded, setLoaded ] = useState(false)
   const { books = [],  } = useContext(BookClubContext);
 
 
@@ -16,16 +16,21 @@ export default function Dashboard(props) {
 
   const book = findBook(books, props.user.following) || { content: "" };
 
+  const onLoad = () => {
+    setLoaded(true)
+  }
   
   const { following } = props.user;
   const feedPosts = props.comments.filter(comment => comment.book === following)
-
-  return (
+  
+return (
     <>
       <Nav />
       <div className="dashboard-main">
         <section className="dashboard-grid-container">
-          <DashBar book={book} user={props.user}/>
+          <DashBar book={book} user={props.user} onLoad={onLoad}/>
+          {!loaded ? (<div></div>) : (
+            <>
           <div className="recent-posts">
             <div className="pointer">&#9759;</div> 
             {feedPosts.length} Recent Posts 
@@ -33,8 +38,11 @@ export default function Dashboard(props) {
           </div>
           <Feed user={props.user} posts={feedPosts}/>
           <Footer />
+          </>
+          )}
         </section>
       </div>
+     
     </>
   );
 }

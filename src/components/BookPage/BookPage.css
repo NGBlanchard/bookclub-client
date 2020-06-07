@@ -40,6 +40,10 @@
   font-size: 35px;
 }
 
+.pubdate {
+  margin-top: 10px;
+  margin-bottom: 10px;;
+}
 .comments-container {
   margin-top: 10px;
   padding-top: 10px;

@@ -73,6 +73,9 @@ export default class BookPage extends Component {
               <h2 className="author">by {book.author}</h2>
               <h3 className="pubdate">{book.pubdate}</h3>
               <p className="est-time">Estimated Duration: {book.est_time}</p>
+              <div className="group-grid">
+                
+              </div>
             </section>
             <section className="head-img">
               <img

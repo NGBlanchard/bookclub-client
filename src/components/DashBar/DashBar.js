@@ -34,11 +34,12 @@ export default function DashBar(props) {
       .then(([user]) => {
         setUser(user);
         setPage(user.user.progress);
+        props.onLoad();
       })
       .catch((err) => {
         setError(err.message);
       });
-  }, [props.user.id]);
+  }, [props, props.user.id]);
 
   const handleChange = (e) => {
     setPage(e.target.value);
@@ -59,7 +60,14 @@ export default function DashBar(props) {
     <section className="dashbar-container">
       {error ? <div className="red">{error}</div> : null}
       <div className="dash-left">
-        <h3 className="dash-banner">Hi, {props.user.username}</h3>
+        <div className="dash-greet">
+          <h3 className="dash-banner">Hi, {props.user.username}</h3>
+          {/* <img
+            className="dash-user-img"
+            src={props.user.profile_img}
+            alt="user"
+          /> */}
+        </div>
         <div className="progress-report">
           <div className="reading">
             Reading
