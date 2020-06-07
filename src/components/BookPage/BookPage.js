@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { NavLink } from "react-router-dom";
 import Nav from "../Nav/Nav";
 import CommentCard from "../Comments/CommentCard";
 import CommentForm from "../Comments/CommentForm";
@@ -9,38 +8,33 @@ import Arrow from "../../img/icon_arrow.svg";
 import "./BookPage.css";
 
 export default class BookPage extends Component {
+  constructor(props) {
+    super(props);
+    this.goBack = this.goBack.bind(this);
+  }
   state = {
     add: false,
     book: [],
     bookComments: [],
   };
+  goBack() {
+    this.props.history.goBack();
+  }
+
   static defaultProps = {
     match: { params: {} },
   };
   static contextType = BookClubContext;
 
-  // componentDidMount() {
-  //   const { books = [], comments = [] } = this.context;
-  //   const { bookId } = this.props.match.params;
-  //   const book = this.findBook(books, bookId) || { content: "" };
-  //   this.setState({
-  //     book: book,
-  //   });
-  //   const bookComments = this.getCommentsForBook(comments, bookId);
-  //   this.setState({
-  //     bookComments: bookComments,
-  //   });
-  // }
-
-  addComment = comment => {
-    this.setState(prevState => ({
-      comments: [...prevState.comments, comment]
+  addComment = (comment) => {
+    this.setState((prevState) => ({
+      comments: [...prevState.comments, comment],
     }));
   };
 
   onUpdate = (newComment) => {
-    ApiService.postComment(newComment)
-    this.context.addComment(newComment)
+    ApiService.postComment(newComment);
+    this.context.addComment(newComment);
     this.onAdd();
   };
 
@@ -71,9 +65,9 @@ export default class BookPage extends Component {
         <Nav />
         <div className="book-container">
           <header className="header">
-            <NavLink className="back-button" to="/books">
+            <button className="back-button" onClick={this.goBack}>
               <img className="back-button" src={Arrow} alt="back arrow" />
-            </NavLink>
+            </button>
             <section className="head-info">
               <h1 className="book-title">{book.title}</h1>
               <h2 className="author">by {book.author}</h2>

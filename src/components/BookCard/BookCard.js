@@ -1,22 +1,21 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import Axios from "axios";
-import TokenService from "../../services/token-service";
-import config from "../../config.js";
+// import Axios from "axios";
+// import TokenService from "../../services/token-service";
+// import config from "../../config.js";
 import "./BookCard.css";
 
 export default function BookCard(props) {
-  const user = JSON.parse(TokenService.getUser());
+  // const user = JSON.parse(TokenService.getUser());
   const { book } = props;
 
-  const variable = { user: user.id, following: book.id };
+  // const variable = { user: user.id, following: book.id };
 
-  const updateFollowing = async (e) => {
-    console.log(variable)
-    Axios.post(`${config.API_ENDPOINT}/users/following`, variable)
-    .then(res => console.log(res));
-   
-  };
+  // const updateFollowing = async (e) => {
+  //   console.log(variable)
+  //   Axios.post(`${config.API_ENDPOINT}/users/following`, variable)
+  //   .then(res => console.log(res));
+  // };
 
   return (
     <NavLink to={`/book/${book.id}`} className="book-shell">

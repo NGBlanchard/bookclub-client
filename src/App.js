@@ -72,7 +72,7 @@ export default class App extends React.Component {
   }
 
   render() {
-const contextValue = {
+    const contextValue = {
       books: this.state.books,
       getBooks: this.getBooks,
       setBooks: this.setBooks,
@@ -105,7 +105,9 @@ const contextValue = {
               path="/book/:bookId"
               render={(routeProps) => {
                 return (
-                  <BookPage {...routeProps} user={TokenService.getUser()} />
+                  <BookPage 
+                    {...routeProps} 
+                    user={TokenService.getUser()} />
                 );
               }}
             />
@@ -120,7 +122,7 @@ const contextValue = {
                 );
               }}
             />
-            <Route
+            {/* <Route
               path={"/profile"}
               render={(routeProps) => {
                 return (
@@ -128,6 +130,18 @@ const contextValue = {
                     {...routeProps}
                     comments={this.state.comments}
                     user={TokenService.getUser()}
+                  />
+                );
+              }}
+            /> */}
+            <Route
+              path="/profile/:userId"
+              render={(routeProps) => {
+                return (
+                  <Profile
+                    {...routeProps}
+                    comments={this.state.comments}
+                    user={JSON.parse(TokenService.getUser())}
                   />
                 );
               }}

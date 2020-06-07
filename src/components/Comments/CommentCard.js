@@ -1,11 +1,10 @@
 import React from "react";
 import Date from "../../services/Date";
 import { NavLink } from "react-router-dom";
-import LikeButton from '../LikeButton/LikeButton'
+import LikeButton from "../LikeButton/LikeButton";
 import "./CommentCard.css";
 
 export default function CommentCard(props) {
-  
   const { comment } = props;
 
   return (
@@ -21,16 +20,14 @@ export default function CommentCard(props) {
           </div>
           <NavLink to={`/comment/${comment.id}`}>
             <div className="comment-post-deets">
-            <div className="title">
-            {props.comment.title}
-            </div>
+              <div className="title">{props.comment.title}</div>
               <br />
               <div className="author-date">
-              {props.comment.author}
-              {" • "}
-              <div className="date">
-                <Date date={props.comment.date_created} />
-              </div>
+                {props.comment.author}
+                {" • "}
+                <div className="date">
+                  <Date date={props.comment.date_created} />
+                </div>
               </div>
             </div>
           </NavLink>
@@ -40,8 +37,8 @@ export default function CommentCard(props) {
           <div className="comment-content">{props.comment.content}</div>
         </NavLink>
         <div className="card-footer">
-          <div className="likes-cont">           
-              <LikeButton attached_to={comment.id}/>            
+          <div className="likes-cont">
+            <LikeButton attached_to={comment.id} />
           </div>
           <div className="comment-cont">
             <NavLink to={`/comment/${comment.id}`} className="card-add-button">

@@ -7,7 +7,7 @@ import "./LikeButton.css";
 import TokenService from "../../services/token-service";
 
 export default function LikeButton(props) {
-  const [like, setLike] = useState(false);
+  const [like, setLike] = useState(null);
   const [counter, setCounter] = useState(0);
   const variable = { attached_to: props.attached_to };
   const userId = JSON.parse(TokenService.getUser()).id;
@@ -26,7 +26,6 @@ export default function LikeButton(props) {
 
   useEffect(() => {
     Axios.post(`${config.API_ENDPOINT}/likes/getLikes`, variable)
-      // ApiService.getAllLikes(variable)
       .then((response) => {
         if (response.data.success) {
           setCounter(response.data.likes.length);

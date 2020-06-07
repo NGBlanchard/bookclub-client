@@ -18,6 +18,7 @@ export default function CommentPage(props) {
 
   useEffect(() => {
     const { commentId } = props.match.params;
+
     Promise.all([fetch(`${config.API_ENDPOINT}/comments`)])
       .then(([commentRes]) => {
         if (!commentRes.ok)
@@ -129,7 +130,6 @@ export default function CommentPage(props) {
                 bookId={comment.book}
                 onUpdate={onUpdate}
                 onAdd={onAdd}
-
               />
             ) : (
               <div className="button-cont">

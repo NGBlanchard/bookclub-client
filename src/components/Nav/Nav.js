@@ -5,6 +5,8 @@ import Logo from '../../img/logo.png'
 import "./Nav.css";
 
 const Nav = () => {
+  const user = JSON.parse(TokenService.getUser());
+
   const handleLogoutClick = () => {
     TokenService.clearAuthToken();
     sessionStorage.clear();
@@ -42,7 +44,7 @@ const Nav = () => {
           <div className="nav-links">
             <Link to="/" className="nav-link">Home</Link>
             <Link to="/books" className="nav-link">Books</Link>
-            <Link to="/profile" className="nav-link">Profile</Link>
+            <Link to={`/profile/${user.id}`} className="nav-link">Profile</Link>
             {TokenService.hasAuthToken() ? renderLogoutLink() : renderLoginLink()}
           </div>
         ) : (

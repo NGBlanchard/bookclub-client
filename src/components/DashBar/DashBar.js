@@ -1,7 +1,8 @@
 import React, { useContext, useState, useEffect } from "react";
 import TokenService from "../../services/token-service";
-import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';import BookClubContext from "../../BookClubContext";
-import 'react-circular-progressbar/dist/styles.css';
+import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
+import BookClubContext from "../../BookClubContext";
+import "react-circular-progressbar/dist/styles.css";
 import Axios from "axios";
 import config from "../../config.js";
 import "./DashBar.css";
@@ -21,7 +22,7 @@ export default function DashBar(props) {
   const book = findBook(books, begUser.following);
   const percentage = Math.floor((page / props.book.pages) * 100);
   const variable = { user: props.user.id, progress: page };
-  
+
   useEffect(() => {
     Promise.all([
       fetch(`${config.API_ENDPOINT}/users/current/${props.user.id}`),
@@ -33,12 +34,11 @@ export default function DashBar(props) {
       .then(([user]) => {
         setUser(user);
         setPage(user.user.progress);
-        // setBook(findBook(books, begUser.following[0]));
       })
       .catch((err) => {
         setError(err.message);
       });
-  }, []);
+  }, [props.user.id]);
 
   const handleChange = (e) => {
     setPage(e.target.value);
@@ -58,15 +58,19 @@ export default function DashBar(props) {
   return (
     <section className="dashbar-container">
       {error ? <div className="red">{error}</div> : null}
-      <div className="reading">
-        Reading
-        <br />
-        <div className="progress-title">{book.title}</div>
-      </div>
-
-      <div>
-        Current page
-        <div className="progress-title">{page}</div>
+      <div className="dash-left">
+        <h3 className="dash-banner">Hi, {props.user.username}</h3>
+        <div className="progress-report">
+          <div className="reading">
+            Reading
+            <br />
+            <div className="progress-title">{book.title}</div>
+          </div>
+          <div className="current-page">
+            Current page
+            <div className="progress-title">{page}</div>
+          </div>
+        </div>
       </div>
       <div className="circle-cont">
         {!percentage ? (
@@ -80,7 +84,7 @@ export default function DashBar(props) {
               textSize: "25px",
               pathColor: "#CB50FF",
               // trailColor: "#CB50FF",
-              textColor: '#212121',
+              textColor: "#212121",
               backgroundColor: "#fffff0",
             })}
             background={true}

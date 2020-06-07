@@ -22,16 +22,15 @@
 .like-button {
   border: none;
   background: white;
-  font-size: 23px;
+  font-size: 20px;
   cursor: pointer;
-  margin-top: 3px;
+  padding-top: 3px;
   margin-right: 3px;
 }
 
 .like-text {
   margin-right: 20px;
-  margin-top: 7px;
-  margin-bottom: auto;
+  margin-top: 12px;
   cursor: pointer;
 }
 
@@ -42,7 +41,6 @@
   color: gray;
   padding-top: 2.5px;
   margin-top: auto;
-  margin-bottom: auto;
 }
 
 .counter-number {

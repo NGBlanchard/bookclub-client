@@ -19,6 +19,9 @@
   left: 0px;
   margin: 5px;
   width: 25px;
+  border: none;
+  background-color: white;
+  cursor: pointer;
 }
 
 .header {
