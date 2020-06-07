@@ -33,7 +33,7 @@ export default function Post(props) {
           </div>
         </NavLink>
       </header>
-      <p className="sub-comment-content">
+      <div className="sub-comment-content">
         {" "}
         {props.post.title ? (
           <>
@@ -44,7 +44,7 @@ export default function Post(props) {
           </>
         ) : null}
         <div className="post-content">{props.post.content}</div>
-      </p>
+      </div>
       <div className="post-footer">
         <div className="subpage-feed-stats">
           <LikeButton attached_to={props.post.id} />
