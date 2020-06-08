@@ -66,9 +66,21 @@
   padding: 0px;
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
   color: #212121;
   background-color: white;
   font-size: 15px;
   border-top: 0.5px solid rgb(235, 235, 235);
+}
+
+.comment-post-deets {
+  position: relative;
+}
+
+.comment-count {
+  color: rgb(157, 157, 157);
+  font-weight: bold;
+  margin-top: 5px;
 }
 

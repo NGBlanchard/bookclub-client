@@ -17,7 +17,7 @@ export default function DashBar(props) {
   if (!props.user || !book) return <div></div>;
 
   return (
-    <section className="dashbar-container">
+    <section className="profile-dashbar-container">
       <div className="reading">
         Reading
         <br />

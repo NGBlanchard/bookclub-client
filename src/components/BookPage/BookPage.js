@@ -26,7 +26,9 @@ export default class BookPage extends Component {
   };
   static contextType = BookClubContext;
 
+  //////superfluous function?
   addComment = (comment) => {
+    console.log("hi");
     this.setState((prevState) => ({
       comments: [...prevState.comments, comment],
     }));
@@ -74,7 +76,8 @@ export default class BookPage extends Component {
               <h3 className="pubdate">{book.pubdate}</h3>
               <p className="est-time">Estimated Duration: {book.est_time}</p>
               <div className="group-grid">
-                
+                <br />
+                There are {bookComments.length} discussions about {book.title}
               </div>
             </section>
             <section className="head-img">

@@ -4,7 +4,6 @@ import Post from "../Post/Post";
 import ProfileHead from "./ProfileHead.js";
 import ProfileAbout from "./ProfileAbout.js";
 import config from "../../config.js";
-
 import "./Profile.css";
 
 export default function Profile(props) {

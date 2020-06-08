@@ -18,6 +18,26 @@
   align-items: center;
 }
 
+.profile-dashbar-container {
+  font-size: 14px;
+  color: #212121;
+  margin: 10px;
+  width: 95.5%;
+  padding: 10px 20px 10px 15px;
+  border-radius: 5px;
+  box-shadow: 0px 9px 10px -8px rgba(0, 0, 0, 0.5);
+  background-color: white;
+  background: linear-gradient(
+    to bottom,
+    rgb(255, 255, 255),
+    rgb(230, 230, 230)
+  );
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .dash-user-img {
   padding: 0px;
   margin: 0px 0px 5px 10px;;
@@ -49,7 +69,7 @@
 .progress-title {
   font-weight: bold;
   line-height: 20px;
-  font-size: 16px;
+  font-size: 13px;
 }
 
 .page {
@@ -102,5 +122,5 @@
 }
 
 .profile-circle-cont {
-  width: 70px;
+  width: 50px;
 }

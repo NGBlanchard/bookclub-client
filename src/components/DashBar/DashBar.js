@@ -61,12 +61,7 @@ export default function DashBar(props) {
       {error ? <div className="red">{error}</div> : null}
       <div className="dash-left">
         <div className="dash-greet">
-          <h3 className="dash-banner">Hi, {props.user.username}</h3>
-          {/* <img
-            className="dash-user-img"
-            src={props.user.profile_img}
-            alt="user"
-          /> */}
+          <h3 className="dash-banner">Hi {user.user.username}</h3>
         </div>
         <div className="progress-report">
           <div className="reading">

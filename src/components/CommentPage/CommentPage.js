@@ -79,18 +79,23 @@ export default function CommentPage(props) {
             <div className="comment-post-deets">
               <div className="title">{comment.title}</div>
               <div className="author-date">
-                {comment.author}
+                {comment.author} 
                 {" • "}
                 <div className="date">
                   <Date className="date" date={comment.date_created} />
                 </div>
+                
               </div>
             </div>
           </div>
           <p className="comment-page-content">{comment.content}</p>
           <div className="page-feed-stats">
             <LikeButton attached_to={comment.id} />
+            <div className="comment-count">
+                {subComments.length} comments
+                </div>
           </div>
+          
         </div>
         {subComments.length === 0 ? (
           <>
