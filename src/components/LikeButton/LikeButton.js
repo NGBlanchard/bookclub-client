@@ -3,6 +3,8 @@ import ApiService from "../../services/api-service";
 import Axios from "axios";
 import config from "../../config.js";
 import "./LikeButton.css";
+import Heart from "../../img/like.png";
+import HeartPink from "../../img/liked.png";
 
 import TokenService from "../../services/token-service";
 
@@ -25,8 +27,8 @@ export default function LikeButton(props) {
   };
 
   useEffect(() => {
-    Axios.post(`${config.API_ENDPOINT}/likes/getLikes`, variable)
-      .then((response) => {
+    Axios.post(`${config.API_ENDPOINT}/likes/getLikes`, variable).then(
+      (response) => {
         if (response.data.success) {
           setCounter(response.data.likes.length);
           response.data.likes.map((like) => {
@@ -38,7 +40,8 @@ export default function LikeButton(props) {
         } else {
           console.log("Failed to get likes");
         }
-      });
+      }
+    );
   }, [variable, userId]);
 
   const onLike = () => {
@@ -60,13 +63,17 @@ export default function LikeButton(props) {
         }}
         onClick={onLike}
       >
-        &hearts;
+        {!like ? (
+          <img src={Heart} alt="heart" className="heart" />
+        ) : (
+          <img src={HeartPink} alt="pink heart" className="heart" />
+        )}
       </button>
       <div
         className="like-text"
         type="button"
         style={{
-          color: !like ? "#212121" : "rgba(203, 80, 255, 0.735)",
+          color: !like ? "gray" : "rgba(203, 80, 255, 0.735)",
         }}
         onClick={onLike}
       >

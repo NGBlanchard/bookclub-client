@@ -4,6 +4,7 @@ import Post from "../Post/Post";
 import ProfileHead from "./ProfileHead.js";
 import ProfileAbout from "./ProfileAbout.js";
 import config from "../../config.js";
+import Loading from '../Loading/Loading';
 import "./Profile.css";
 
 export default function Profile(props) {
@@ -42,7 +43,7 @@ export default function Profile(props) {
         .map((comment) => <Post key={comment.id} post={comment} />);
   };
 
-  if (isLoading) return <div></div>;
+  if (isLoading) return <Loading />;
 
   return (
     <>

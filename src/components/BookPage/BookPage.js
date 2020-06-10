@@ -5,6 +5,7 @@ import CommentForm from "../Comments/CommentForm";
 import BookClubContext from "../../BookClubContext";
 import ApiService from "../../services/api-service";
 import Arrow from "../../img/icon_arrow.svg";
+import Loading from '../Loading/Loading';
 import "./BookPage.css";
 
 export default class BookPage extends Component {
@@ -60,7 +61,7 @@ export default class BookPage extends Component {
     const user = JSON.parse(this.props.user);
 
     if (!user || !book) {
-      return <div>Loading!!</div>;
+      return <Loading />;
     }
     return (
       <>

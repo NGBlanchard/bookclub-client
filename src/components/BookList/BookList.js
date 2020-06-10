@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import Nav from "../Nav/Nav";
 import BookCard from "../BookCard/BookCard";
-import Loader from "react-loader-spinner";
+import Loading from '../Loading/Loading';
 import BookClubContext from "../../BookClubContext";
 import "./BookList.css";
 
@@ -13,7 +13,7 @@ const BookList = () => {
   };
 
   if (!context.books) {
-    return <Loader />;
+    return <Loading />;
   }
   return (
     <div className="booklist-container">

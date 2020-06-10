@@ -7,6 +7,7 @@ import Arrow from "../../img/icon_arrow.svg";
 import LikeButton from "../LikeButton/LikeButton";
 import config from "../../config.js";
 import ApiService from "../../services/api-service";
+import Loading from '../Loading/Loading';
 import "./CommentPage.css";
 
 export default function CommentPage(props) {
@@ -57,7 +58,7 @@ export default function CommentPage(props) {
   const { commentId } = props.match.params;
 
   if (!comments || !comment || !subComments) {
-    return <div>Loading!!</div>;
+    return <Loading />;
   }
   return (
     <>

@@ -122,18 +122,6 @@ export default class App extends React.Component {
                 );
               }}
             />
-            {/* <Route
-              path={"/profile"}
-              render={(routeProps) => {
-                return (
-                  <Profile
-                    {...routeProps}
-                    comments={this.state.comments}
-                    user={TokenService.getUser()}
-                  />
-                );
-              }}
-            /> */}
             <Route
               path="/profile/:userId"
               render={(routeProps) => {

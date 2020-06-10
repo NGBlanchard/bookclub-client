@@ -4,12 +4,12 @@ import DashBar from "../DashBar/DashBar";
 import Feed from "../Feed/Feed";
 import Footer from "../Footer/Footer";
 import BookClubContext from "../../BookClubContext";
+import Loading from '../Loading/Loading';
 import "./Dashboard.css";
 
 export default function Dashboard(props) {
 const [ loaded, setLoaded ] = useState(false)
   const { books = [],  } = useContext(BookClubContext);
-
 
   const findBook = (books = [], bookId) =>
     books.find((book) => book.id === bookId);
@@ -22,14 +22,14 @@ const [ loaded, setLoaded ] = useState(false)
   
   const { following } = props.user;
   const feedPosts = props.comments.filter(comment => comment.book === following)
-  
+
 return (
     <>
       <Nav />
       <div className="dashboard-main">
         <section className="dashboard-grid-container">
           <DashBar book={book} user={props.user} onLoad={onLoad}/>
-          {!loaded ? (<div></div>) : (
+          {!loaded ? (<div><Loading /></div>) : (
             <>
           <div className="recent-posts">
             <div className="pointer">&#9759;</div> 

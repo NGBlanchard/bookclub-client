@@ -18,13 +18,13 @@ export default function DashBar(props) {
 
   return (
     <section className="profile-dashbar-container">
-      <div className="reading">
+      <div className="profile-reading">
         Reading
         <br />
         <div className="progress-title">{book.title}</div>
       </div>
 
-      <div>
+      <div className="current-page">
         Current page
         <div className="progress-title">{props.user.progress}</div>
       </div>
