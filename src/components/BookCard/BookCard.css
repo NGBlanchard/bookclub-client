@@ -4,7 +4,7 @@
 }
 .book-shell {
 	padding: 0px;
-	width: 200px;
+	width: 145px;
 }
 
 .bookcard-container {
@@ -22,8 +22,8 @@
 }
 
 .bookcard-container, .front, .back {
-	width: 200px;
-	height: 300px;
+	width: 145px;
+	height: 225px;
 }
 
 .flipper {
