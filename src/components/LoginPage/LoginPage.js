@@ -3,6 +3,7 @@ import Nav from "../Nav/Nav";
 import ApiService from "../../services/api-service";
 import TokenService from "../../services/token-service";
 import Logo from '../../img/logo.png'
+import Loading from '../Loading/Loading';
 import "./Login.css";
 
 const Login = (props) => {
@@ -11,6 +12,7 @@ const Login = (props) => {
     password: "",
     error: null,
   });
+  const [ loaded, setLoaded ] = useState(true)
 
 ///////////////////////////////////////////////
   const handleUsernameChange = (e) => {
@@ -31,6 +33,7 @@ const Login = (props) => {
   };
 
   const handleSubmit = async (e) => {
+    setLoaded(false)
     e.preventDefault();
     const { username, password } = formState;
     ApiService.postLogin({
@@ -43,21 +46,24 @@ const Login = (props) => {
         onLoginSuccess();
       })
       .catch((res) => {
-        formHandler("error", res.error);
+        console.log(res)
+        // formHandler("error", res.error);
       });
+      setLoaded(true)
   };
 
   const { error } = formState;
   return (
     <>
       <Nav />
+      {!loaded ? (<Loading />) : <div></div>}
       <section className="login-page">
         <section className="form">
         <h1 className="login-title">Alcove Reads</h1>
           <center>
             <img className="login-logo" src={Logo} alt="app logo" />
           </center>
-          
+          <span role="alert">{error && <p className="red">{error}</p>}</span>
           <span role="alert">{error && <p className="red">{error}</p>}</span>
           <form onSubmit={handleSubmit} className="login-form">
             <input
