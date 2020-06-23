@@ -2,10 +2,10 @@ import config from "../config";
 
 const TokenService = {
   setUser(user) {
-    window.sessionStorage.setItem(config.USER, JSON.stringify(user));
+    window.localStorage.setItem(config.USER, JSON.stringify(user));
   },
   getUser() {
-    return window.sessionStorage.getItem(config.USER);
+    return window.localStorage.getItem(config.USER);
   },
   getAuthToken() {
     return window.localStorage.getItem(config.TOKEN_KEY);

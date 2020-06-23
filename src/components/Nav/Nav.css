@@ -1,5 +1,4 @@
 .nav {
-  max-width: 1200px;
   -webkit-font-smoothing: antialiased;
   transition: all 0.2s ease-in;
   margin: 0 auto;
@@ -15,9 +14,10 @@
 }
 
 .nav-container {
-  max-width: 1200px;
   box-shadow: 0px 9px 10px -8px rgba(0, 0, 0, 0.5);
+  padding: 0px 20px 0px 10px;
 }
+
 .nav-header {
   color: white;
   font-weight: bold;
@@ -26,6 +26,7 @@
   flex-direction: row;
   align-items: center;
 }
+
 .nav-header:hover,
 .site-nav:hover .nav-header {
   transform: skewY(-7deg) skewX(15deg) scale(1.04)

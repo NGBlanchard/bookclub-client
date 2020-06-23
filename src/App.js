@@ -1,6 +1,6 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
-import PrivateRoute from "./hocs/PrivateRoute";
+import PrivateRoute from "./hocs/PrivateRoute.js";
 import PublicOnlyRoute from "./hocs/PublicOnlyRoute";
 import Dashboard from "./components/Dashboard/Dashboard";
 import BookList from "./components/BookList/BookList";
@@ -89,7 +89,7 @@ export default class App extends React.Component {
           <Switch>
             <Route
               exact
-              path="/"
+              path="/dashboard"
               render={(routeProps) => {
                 return (
                   <Dashboard
@@ -100,14 +100,35 @@ export default class App extends React.Component {
                 );
               }}
             />
+            {TokenService.hasAuthToken() ? (
+              <Route
+                exact
+                path="/"
+                render={(routeProps) => {
+                  return (
+                    <Dashboard
+                      {...routeProps}
+                      comments={this.state.comments}
+                      user={JSON.parse(TokenService.getUser())}
+                    />
+                  );
+                }}
+              />
+            ) : (
+              <PublicOnlyRoute
+                restrictied={false}
+                exact
+                path={"/"}
+                component={LoginPage}
+              />
+            )}
+
             <PrivateRoute exact path="/books" component={BookList} />
             <Route
               path="/book/:bookId"
               render={(routeProps) => {
                 return (
-                  <BookPage 
-                    {...routeProps} 
-                    user={TokenService.getUser()} />
+                  <BookPage {...routeProps} user={TokenService.getUser()} />
                 );
               }}
             />

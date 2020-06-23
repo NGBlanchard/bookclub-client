@@ -10,7 +10,7 @@ const Nav = () => {
   const handleLogoutClick = () => {
     TokenService.clearAuthToken();
     sessionStorage.clear();
-    window.location.href = "/login";
+    window.location.href = "/";
   };
 
   const renderLogoutLink = () => {
@@ -42,7 +42,7 @@ const Nav = () => {
         </div>
         {TokenService.hasAuthToken() ? (
           <div className="nav-links">
-            <Link to="/" className="nav-link">Home</Link>
+            <Link to="/dashboard" className="nav-link">Dashboard</Link>
             <Link to="/books" className="nav-link">Books</Link>
             <Link to={`/profile/${user.id}`} className="nav-link">Profile</Link>
             {TokenService.hasAuthToken() ? renderLogoutLink() : renderLoginLink()}

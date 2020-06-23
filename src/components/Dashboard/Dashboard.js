@@ -9,7 +9,7 @@ import "./Dashboard.css";
 
 export default function Dashboard(props) {
 const [ loaded, setLoaded ] = useState(false)
-  const { books = [],  } = useContext(BookClubContext);
+const { books = [],  } = useContext(BookClubContext);
 
   const findBook = (books = [], bookId) =>
     books.find((book) => book.id === bookId);

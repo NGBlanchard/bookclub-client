@@ -28,7 +28,7 @@ const Login = (props) => {
 ////////////////////////////////////////////////
   const onLoginSuccess = () => {
     const { location, history } = props;
-    const destination = (location.state || {}).from || "/";
+    const destination = (location.state || {}).from || "/dashboard";
     history.push(destination);
   };
 
@@ -53,6 +53,7 @@ const Login = (props) => {
   };
 
   const { error } = formState;
+  
   return (
     <>
       <Nav />

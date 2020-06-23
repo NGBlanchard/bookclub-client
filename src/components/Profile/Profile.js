@@ -46,7 +46,7 @@ export default function Profile(props) {
   if (isLoading) return <Loading />;
 
   return (
-    <>
+    <section className="profile-cont">
       <Nav />
       {error ? <div className="red">{error}</div> : null}
       <div>
@@ -54,6 +54,6 @@ export default function Profile(props) {
         <ProfileAbout description={user.description} />
         <div className="profile-grid-container">{renderGrid()}</div>
       </div>
-    </>
+    </section>
   );
 }
